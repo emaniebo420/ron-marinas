@@ -1,7 +1,7 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { GardenBackdrop, usePageTitle } from "../components/ui";
 import { artist } from "../content";
-import { heroAlt, heroImage } from "../home";
+import { heroAlt, heroHasBakedText, heroImage, heroLinks } from "../home";
 
 const links = [
   { to: "/gallery", label: "Gallery" },
@@ -12,6 +12,41 @@ const links = [
 export default function Home() {
   usePageTitle("");
   const hasImage = heroImage !== "";
+
+  if (hasImage && heroHasBakedText) {
+    return (
+      <main className="bg-[#1ABFD0]">
+        <div className="relative">
+          <img src={heroImage} alt={heroAlt} decoding="async" className="block h-auto w-full" />
+          <h1 className="sr-only">{artist.name}</h1>
+          {heroLinks.map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              aria-label={link.label}
+              className="absolute hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+              style={{
+                left: `${link.left * 100}%`,
+                top: `${link.top * 100}%`,
+                width: `${link.width * 100}%`,
+                height: `${link.height * 100}%`,
+              }}
+            />
+          ))}
+        </div>
+        <nav
+          aria-label="Primary"
+          className="band-teal flex justify-center gap-x-8 px-6 py-4 text-base uppercase tracking-[.06em] md:hidden"
+        >
+          {heroLinks.map((link) => (
+            <Link key={link.to} to={link.to} className="py-2.5 text-fg no-underline">
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+      </main>
+    );
+  }
 
   return (
     <main className="band-teal relative flex min-h-screen flex-col overflow-hidden">
