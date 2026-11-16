@@ -9,7 +9,7 @@ export function usePageTitle(title: string) {
 }
 
 export function Container({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <div className={`mx-auto max-w-[1200px] px-10 ${className}`}>{children}</div>;
+  return <div className={`mx-auto max-w-[1200px] px-5 sm:px-10 ${className}`}>{children}</div>;
 }
 
 export function Slot({ label, className }: { label: string; className: string }) {
@@ -22,8 +22,8 @@ export function Slot({ label, className }: { label: string; className: string })
 
 export function SectionHeading({ title, note }: { title: string; note?: string }) {
   return (
-    <div className="mb-12 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-t border-rule pt-6">
-      <h2 className="font-display text-[44px] font-normal leading-tight">{title}</h2>
+    <div className="mb-8 flex flex-wrap sm:mb-12 items-baseline justify-between gap-x-6 gap-y-2 border-t border-rule pt-6">
+      <h2 className="font-display text-[clamp(32px,5vw,44px)] font-normal leading-tight">{title}</h2>
       {note ? <span className="text-[13px] text-muted">{note}</span> : null}
     </div>
   );
@@ -68,38 +68,40 @@ const navItems = [
 
 function SiteHeader() {
   return (
-    <Container className="flex flex-wrap items-center justify-between gap-x-10 gap-y-4 py-7">
-      <Link to="/" className="font-display text-[26px] text-fg no-underline">
+    <header className="flex flex-col items-center px-5 pt-9 text-center text-[#073b3e] sm:pt-12">
+      <Link
+        to="/"
+        className="text-[clamp(15px,2.2vw,20px)] font-semibold uppercase tracking-[.32em] text-inherit no-underline [text-indent:.32em]"
+      >
         {artist.name}
       </Link>
-      <nav aria-label="Primary" className="flex flex-wrap gap-x-7 gap-y-2 text-sm">
+      <nav aria-label="Primary" className="mt-3 flex items-center justify-center gap-x-1 sm:gap-x-3">
         {navItems.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
             end={item.end}
             className={({ isActive }) =>
-              `py-2.5 text-fg no-underline ${isActive ? "underline decoration-2 underline-offset-8" : ""}`
+              `px-3 py-3 text-[clamp(12px,1.4vw,15px)] font-medium uppercase tracking-[.18em] text-inherit no-underline sm:px-5 ${
+                isActive ? "underline decoration-2 underline-offset-[10px]" : ""
+              }`
             }
           >
             {item.label}
           </NavLink>
         ))}
       </nav>
-    </Container>
+    </header>
   );
 }
 
-/** Teal band with nav. Children render below the nav inside the band. */
+/** Sky-teal band (same colour as the Home painting) with centered header. */
 export function TealBand({ children }: { children: ReactNode }) {
   return (
-    <div className="band-teal relative overflow-hidden">
-      <GardenBackdrop />
-      <div className="relative">
-        <SiteHeader />
-        {children}
-      </div>
-      <svg aria-hidden="true" viewBox="0 0 1440 60" preserveAspectRatio="none" className="relative -mt-px block h-[60px] w-full">
+    <div className="bg-[rgb(15,217,205)]">
+      <SiteHeader />
+      {children}
+      <svg aria-hidden="true" viewBox="0 0 1440 60" preserveAspectRatio="none" className="-mt-px block h-[40px] w-full sm:h-[60px]">
         <path
           className="fill-bg"
           d="M0 30 C 180 0 360 60 540 30 S 900 0 1080 30 S 1300 55 1440 25 L1440 60 L0 60 Z"
@@ -113,10 +115,12 @@ export function TealBand({ children }: { children: ReactNode }) {
 export function PageBand({ title, kicker }: { title: string; kicker?: string }) {
   return (
     <TealBand>
-      <Container className="pb-[72px] pt-10">
-        {kicker ? <p className="m-0 mb-4 text-[13px] uppercase tracking-[.14em] text-muted">{kicker}</p> : null}
-        <h1 className="m-0 font-display text-[clamp(56px,8vw,112px)] font-normal leading-[.95] tracking-tight">{title}</h1>
-      </Container>
+      <div className="px-5 pb-10 pt-10 text-center text-[#073b3e] sm:pb-14 sm:pt-14">
+        {kicker ? (
+          <p className="m-0 mb-4 text-xs uppercase tracking-[.3em] [text-indent:.3em]">{kicker}</p>
+        ) : null}
+        <h1 className="m-0 font-display text-[clamp(52px,10vw,112px)] font-normal leading-[.95] tracking-tight">{title}</h1>
+      </div>
     </TealBand>
   );
 }
@@ -130,7 +134,7 @@ export function PinkBand({ children }: { children: ReactNode }) {
           d="M0 0 L1440 0 L1440 25 C 1300 55 1260 0 1080 30 S 900 60 720 30 S 360 0 180 30 S 60 50 0 30 Z"
         />
       </svg>
-      <Container className="pb-[72px] pt-12">{children}</Container>
+      <Container className="pb-14 pt-10 text-center sm:pb-[72px] sm:pt-12">{children}</Container>
     </div>
   );
 }
@@ -138,7 +142,7 @@ export function PinkBand({ children }: { children: ReactNode }) {
 export function Footer() {
   return (
     <footer>
-      <Container className="flex flex-wrap justify-between gap-x-6 gap-y-2 pb-10 pt-6 text-[13px] text-muted">
+      <Container className="flex flex-col items-center gap-y-2 pb-10 pt-6 text-center text-[13px] text-muted sm:flex-row sm:justify-between sm:text-left">
         <span>
           © {new Date().getFullYear()} {artist.name}
         </span>

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { usePageTitle } from "../components/ui";
-import { artist } from "../content";
+import { PinkBand, Slot, usePageTitle } from "../components/ui";
+import { artist, works } from "../content";
 import { heroAlt, heroImage, homeQuote } from "../home";
 
 const links = [
@@ -45,7 +45,38 @@ export default function Home() {
         </header>
       </section>
 
-      <section className="px-6 py-20 md:py-28">
+      <section className="mx-auto max-w-[1200px] px-5 py-16 sm:px-10 sm:py-24">
+        <p className="m-0 mb-3 text-center text-xs uppercase tracking-[.3em] text-[#5e5a53]">Selected works</p>
+        <h2 className="m-0 mb-10 text-center text-[clamp(34px,5vw,60px)] font-normal leading-none" style={{ fontFamily: "var(--font-display)" }}>
+          Recent paintings
+        </h2>
+        <div className="grid grid-cols-2 gap-3 sm:gap-7 md:grid-cols-3">
+          {(works.length ? works.slice(0, 3) : [null, null, null]).map((work, i) => (
+            <figure key={work ? work.slug : i} className={`m-0 min-w-0 ${i === 2 ? "hidden md:block" : ""}`}>
+              {work ? (
+                <Link to={`/gallery/${work.slug}`} className="block no-underline">
+                  <img src={work.image} alt={work.alt} loading="lazy" decoding="async" className="aspect-[4/5] w-full bg-[#e4e0d8] object-cover" />
+                </Link>
+              ) : (
+                <Slot label={`[ARTWORK 0${i + 1}]`} className="aspect-[4/5]" />
+              )}
+              <figcaption className="mt-3 text-sm sm:text-[17px]" style={{ fontFamily: "var(--font-display)" }}>
+                {work ? `${work.title}, ${work.year}` : "[Title], [Year]"}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <div className="mt-10 text-center">
+          <Link
+            to="/gallery"
+            className="inline-flex min-h-12 items-center rounded-full border border-[#1b1a18] px-8 text-sm uppercase tracking-[.18em] text-[#1b1a18] no-underline"
+          >
+            View full gallery
+          </Link>
+        </div>
+      </section>
+
+      <section className="bg-white px-6 py-20 md:py-28">
         <figure className="mx-auto m-0 max-w-3xl text-center">
           <blockquote className="m-0 text-[clamp(26px,3.6vw,42px)] leading-snug" style={{ fontFamily: "var(--font-display)" }}>
             “{homeQuote.text}”
@@ -55,6 +86,20 @@ export default function Home() {
           </figcaption>
         </figure>
       </section>
+
+      <PinkBand>
+        <div className="flex flex-col items-center gap-y-7">
+          <h2 className="m-0 text-[clamp(36px,5vw,64px)] font-normal leading-none" style={{ fontFamily: "var(--font-display)" }}>
+            Interested in a piece?
+          </h2>
+          <Link
+            to="/contact"
+            className="inline-flex min-h-12 items-center rounded-full border border-[#2a0f17] px-8 text-sm uppercase tracking-[.18em] text-[#2a0f17] no-underline"
+          >
+            Get in touch
+          </Link>
+        </div>
+      </PinkBand>
     </main>
   );
 }

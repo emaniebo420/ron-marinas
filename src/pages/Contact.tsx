@@ -13,9 +13,9 @@ export default function Contact() {
     <>
       <PageBand title="Contact" />
       <main>
-        <Container className="pb-24 pt-10">
-          <div className="max-w-[680px]">
-            <p className="m-0 text-lg leading-relaxed">
+        <Container className="pb-16 pt-10 sm:pb-24">
+          <div className="mx-auto max-w-[680px] text-center">
+            <p className="m-0 text-base leading-relaxed sm:text-lg">
               {work ? `Inquiring about “${work}”. ` : ""}
               For availability, pricing, commissions, or studio visits, write to Ron directly.
             </p>
@@ -23,10 +23,10 @@ export default function Contact() {
         </Container>
       </main>
       <PinkBand>
-        <div className="flex flex-wrap items-end justify-between gap-x-20 gap-y-8">
-          <div className="flex min-w-0 flex-[1_1_380px] flex-col gap-3 text-lg">
+        <div className="flex flex-col items-center gap-y-8">
+          <div className="flex min-w-0 flex-col items-center gap-3 text-lg">
             {mailto ? (
-              <a href={mailto} className="w-fit font-display text-[clamp(32px,4vw,56px)] leading-tight text-fg underline">
+              <a href={mailto} className="w-fit max-w-full break-all font-display text-[clamp(26px,4vw,56px)] leading-tight text-fg underline">
                 {artist.email}
               </a>
             ) : (

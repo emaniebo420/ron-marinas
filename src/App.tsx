@@ -5,6 +5,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Gallery from "./pages/Gallery";
 import Home from "./pages/Home";
+import Piece from "./pages/Piece";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -16,7 +17,7 @@ function ScrollToTop() {
 
 function NotFound() {
   return (
-    <main className="mx-auto max-w-[1200px] px-10 py-32">
+    <main className="mx-auto max-w-[1200px] px-5 py-32 sm:px-10">
       <h1 className="font-display text-6xl">Page not found</h1>
       <p className="mt-4 text-muted">
         <a href="/" className="underline">
@@ -34,6 +35,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/gallery/:slug" element={<Piece />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<NotFound />} />
