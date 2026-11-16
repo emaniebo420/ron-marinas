@@ -1,19 +1,17 @@
 /**
  * Home page hero painting (file lives in /public).
- *
- * heroHasBakedText = true  -> the image already contains the title, menu and
- *   "Painter · Artist"; the page shows it as-is and lays invisible links over
- *   the menu words (see heroLinks).
- * heroHasBakedText = false -> the image is the clean painting; the page draws
- *   the title and menu in HTML on top of it.
+ * hero-clean.jpg is the painting with the baked-in title/menu/tagline removed
+ * (flat sky only). The original upload stays untouched as hero.jpg.
  */
-export const heroImage: string = "/hero.jpg";
-export const heroAlt = "Ron Mariñas, Painter · Artist. Painting of a young man holding a cigarette against a turquoise sky.";
-export const heroHasBakedText: boolean = true;
+export const heroImage: string = "/hero-clean.jpg";
+export const heroAlt =
+  "Painting of a young man holding a cigarette against a turquoise sky, pink horizon and green foliage.";
 
-/** Link areas over the baked-in menu words, as fractions of the image size. */
-export const heroLinks = [
-  { to: "/gallery", label: "Gallery", left: 0.3036, top: 0.127, width: 0.1154, height: 0.0499 },
-  { to: "/about", label: "About", left: 0.4377, top: 0.127, width: 0.0899, height: 0.0499 },
-  { to: "/contact", label: "Contact", left: 0.5462, top: 0.127, width: 0.1187, height: 0.0499 },
-] as const;
+/** Sky colour sampled from the painting; the page extends it above the image. */
+export const skyColor = "rgb(15, 217, 205)";
+
+/** Quote shown under the hero. */
+export const homeQuote = {
+  text: "My paintings are the most precious thing in my life. It’s like a second penis to me, which means not everyone can have them.",
+  by: "Ron M.",
+};
