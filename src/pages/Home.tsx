@@ -28,7 +28,10 @@ export default function Home() {
             <span className="sr-only">{artist.name}</span>
             <span aria-hidden="true">Ron Mariñas</span>
           </h1>
-          <nav aria-label="Primary" className="mt-5 flex items-center justify-center gap-x-1 sm:gap-x-3">
+          <p className="mb-0 mt-4 text-[clamp(11px,1.3vw,15px)] font-medium uppercase tracking-[.3em] [text-indent:.3em] [text-shadow:0_1px_8px_rgba(0,40,45,.5)]">
+            {artist.tagline}
+          </p>
+          <nav aria-label="Primary" className="mt-3 flex items-center justify-center gap-x-1 sm:gap-x-3">
             {links.map((link) => (
               <Link
                 key={link.to}
