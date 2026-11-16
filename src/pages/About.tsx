@@ -14,10 +14,10 @@ export default function About() {
           <div className="min-w-0 max-w-[680px]">
             <p className="m-0 mb-4 text-xs uppercase tracking-[.3em] text-muted">Artist statement</p>
             <p className="m-0 mb-7 font-display text-[clamp(28px,3.4vw,44px)] leading-[1.15]">
-              {artist.statement || "[ONE-SENTENCE STATEMENT — supplied by Ron]"}
+              {artist.statement || "[ONE-SENTENCE STATEMENT — ]"}
             </p>
             <p className="m-0 text-base leading-relaxed text-muted sm:text-[17px]">
-              {artist.bio || "[BIO — short, supplied by Ron]"}
+              {artist.bio || "[BIO — short, ]"}
             </p>
             <Link
               to="/gallery"
