@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-display: "Instrument Serif", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-slot: var(--slot);
+  --color-rule: var(--rule);
+  --color-accent: var(--accent);
+}
+
+:root {
+  --bg: #f6f4ef;
+  --fg: #1b1a18;
+  --muted: #5e5a53;
+  --slot: #e4e0d8;
+  --rule: #d2cec4;
+  --accent: #0b6e78;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image: repeating-linear-gradient(98deg, rgba(27, 26, 24, 0.035) 0 1px, transparent 1px 7px);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  line-height: 1.55;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+.band-teal {
+  --fg: #0f1b1c;
+  --muted: #103236;
+  --slot: rgba(246, 244, 239, 0.62);
+  --rule: #0f1b1c;
+  background-color: #2aafb5;
+  background-image:
+    repeating-linear-gradient(100deg, rgba(255, 255, 255, 0.13) 0 2px, transparent 2px 8px),
+    repeating-linear-gradient(78deg, rgba(0, 60, 70, 0.12) 0 1px, transparent 1px 5px);
+}
+
+.band-pink {
+  --fg: #2a0f17;
+  --muted: #4a1b28;
+  --accent: #2a0f17;
+  --rule: #2a0f17;
+  background-color: #f4778f;
+  background-image:
+    repeating-linear-gradient(100deg, rgba(255, 255, 255, 0.14) 0 2px, transparent 2px 8px),
+    repeating-linear-gradient(78deg, rgba(120, 20, 50, 0.1) 0 1px, transparent 1px 5px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
