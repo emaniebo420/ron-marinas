@@ -1,4 +1,4 @@
-# Ron Mariñas – one-page site
+# Ron Mariñas 
 
 Vite + React + TypeScript + Tailwind v4. Three pages: Gallery (/), About (/about), Contact (/contact). Routing is react-router; `vercel.json` rewrites deep links to `index.html`.
 
