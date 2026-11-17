@@ -66,9 +66,13 @@ const navItems = [
   { to: "/contact", label: "Contact", end: false },
 ] as const;
 
-function SiteHeader() {
+function SiteHeader({ light = false }: { light?: boolean }) {
   return (
-    <header className="flex flex-col items-center px-5 pt-9 text-center text-[#073b3e] sm:pt-12">
+    <header
+      className={`flex flex-col items-center px-5 pt-9 text-center sm:pt-12 ${
+        light ? "text-white [text-shadow:0_1px_10px_rgba(0,40,45,.45)]" : "text-[#073b3e]"
+      }`}
+    >
       <Link
         to="/"
         className="text-[clamp(15px,2.2vw,20px)] font-semibold uppercase tracking-[.32em] text-inherit no-underline [text-indent:.32em]"
@@ -96,10 +100,23 @@ function SiteHeader() {
 }
 
 /** Sky-teal band (same colour as the Home painting) with centered header. */
-export function TealBand({ children }: { children: ReactNode }) {
+export function TealBand({ children, image }: { children: ReactNode; image?: string }) {
   return (
-    <div className="bg-[rgb(15,217,205)]">
-      <SiteHeader />
+    <div
+      className={image ? "text-white" : "bg-[rgb(15,217,205)]"}
+      style={
+        image
+          ? {
+              backgroundColor: "rgb(40,150,170)",
+              backgroundImage: `linear-gradient(rgba(0,40,55,.18), rgba(0,40,55,.18)), url(${image})`,
+              backgroundSize: "max(100%, 900px) auto",
+              backgroundPosition: "center 17%",
+              backgroundRepeat: "no-repeat",
+            }
+          : undefined
+      }
+    >
+      <SiteHeader light={Boolean(image)} />
       {children}
       <svg aria-hidden="true" viewBox="0 0 1440 60" preserveAspectRatio="none" className="-mt-px block h-[40px] w-full sm:h-[60px]">
         <path
@@ -112,10 +129,14 @@ export function TealBand({ children }: { children: ReactNode }) {
 }
 
 /** Compact band for inner pages. */
-export function PageBand({ title, kicker }: { title: string; kicker?: string }) {
+export function PageBand({ title, kicker, image }: { title: string; kicker?: string; image?: string }) {
   return (
-    <TealBand>
-      <div className="px-5 pb-10 pt-10 text-center text-[#073b3e] sm:pb-14 sm:pt-14">
+    <TealBand image={image}>
+      <div
+        className={`px-5 pb-10 pt-10 text-center sm:pb-14 sm:pt-14 ${
+          image ? "text-white [text-shadow:0_2px_16px_rgba(0,40,55,.5)]" : "text-[#073b3e]"
+        }`}
+      >
         {kicker ? (
           <p className="m-0 mb-4 text-xs uppercase tracking-[.3em] [text-indent:.3em]">{kicker}</p>
         ) : null}

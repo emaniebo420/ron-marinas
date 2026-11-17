@@ -8,7 +8,7 @@ export default function Gallery() {
 
   return (
     <>
-      <PageBand title="Gallery" kicker={artist.tagline} />
+      <PageBand title="Gallery" kicker={artist.tagline} image="/cta-garden.jpg" />
 
       <main>
         <Container className="pb-20 pt-6 sm:pb-28">
