@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { Container, PageBand, usePageTitle } from "../components/ui";
+import { Container, PageBand, Slot, usePageTitle } from "../components/ui";
 import { artist, works } from "../content";
 
 export default function Piece() {
@@ -28,23 +28,29 @@ export default function Piece() {
 
   const prev = works[(index - 1 + works.length) % works.length];
   const next = works[(index + 1) % works.length];
-  const details: [string, string][] = [
-    ["Medium", work.medium],
-    ["Size", work.size],
-    ["Status", work.status],
-  ];
+  const details = (
+    [
+      ["Medium", work.medium],
+      ["Size", work.size],
+    ] as [string, string | undefined][]
+  ).filter((d): d is [string, string] => Boolean(d[1]));
 
   return (
     <>
-      <PageBand title={work.title} kicker={work.year} />
+      <PageBand title={work.title} kicker={work.year ?? artist.tagline} />
       <main>
         <Container className="pb-20 pt-6 sm:pb-28">
           <Link to="/gallery" className="mb-6 inline-block py-2 text-xs uppercase tracking-[.2em] text-muted no-underline">
             ← Back to gallery
           </Link>
           <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-[1.2fr_1fr] md:gap-14">
-            <img src={work.image} alt={work.alt} decoding="async" className="block w-full bg-slot" />
+            {work.image ? (
+              <img src={work.image} alt={work.alt ?? work.title} decoding="async" className="block w-full bg-slot" />
+            ) : (
+              <Slot label={`[PHOTO: ${work.title}]`} className="aspect-[4/5] w-full" />
+            )}
             <div>
+              {details.length > 0 ? (
               <dl className="m-0 grid grid-cols-[100px_1fr] gap-y-3 border-t border-rule pt-5 text-[15px]">
                 {details.map(([k, v]) => (
                   <div key={k} className="contents">
@@ -53,6 +59,7 @@ export default function Piece() {
                   </div>
                 ))}
               </dl>
+              ) : null}
               <Link
                 to={`/contact?work=${encodeURIComponent(work.title)}`}
                 className="mt-8 inline-flex min-h-12 items-center rounded-full bg-fg px-8 text-sm uppercase tracking-[.18em] text-bg no-underline"

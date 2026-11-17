@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { PinkBand, Slot, usePageTitle } from "../components/ui";
 import { artist, works } from "../content";
-import { heroAlt, heroImage, homeQuote } from "../home";
+import { heroAlt, heroImage, heroPhoneImage, homeQuote } from "../home";
 
 const links = [
   { to: "/gallery", label: "Gallery" },
@@ -14,29 +14,30 @@ export default function Home() {
 
   return (
     <main className="bg-[#f6f4ef] text-[#1b1a18]">
-      <section className="relative h-svh min-h-[520px] overflow-hidden bg-[rgb(15,217,205)] text-white">
-        <img
-          src={heroImage}
-          alt={heroAlt}
-          decoding="async"
-          className="absolute inset-0 h-full w-full object-cover object-[20%_30%]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,40,45,.55)] to-transparent to-45%" aria-hidden="true" />
-
-        <header className="relative flex flex-col items-center px-6 pt-10 text-center md:pt-14">
-          <h1 className="m-0 font-sans text-[clamp(26px,6vw,68px)] font-semibold uppercase leading-none tracking-[.32em] [text-indent:.32em] [text-shadow:0_2px_16px_rgba(0,40,45,.45)]">
+      <section className="relative bg-[rgb(100,214,204)] text-white">
+        <picture>
+          <source media="(min-width: 768px)" srcSet={heroImage} />
+          <img
+            src={heroPhoneImage}
+            alt={heroAlt}
+            decoding="async"
+            className="block h-auto w-full"
+          />
+        </picture>
+        <header className="absolute left-[14%] right-0 top-[6.5%] z-10 flex flex-col items-center text-center md:left-[35%] md:right-auto md:top-[16%] md:w-[40%]">
+          <h1 className="m-0 font-sans text-[clamp(24px,7vw,30px)] font-semibold uppercase leading-none tracking-[.28em] [text-indent:.28em] md:text-[clamp(30px,3.7vw,60px)] [text-shadow:0_1px_10px_rgba(0,70,70,.4)]">
             <span className="sr-only">{artist.name}</span>
             <span aria-hidden="true">Ron Mariñas</span>
           </h1>
-          <p className="mb-0 mt-4 text-[clamp(11px,1.3vw,15px)] font-medium uppercase tracking-[.3em] [text-indent:.3em] [text-shadow:0_1px_8px_rgba(0,40,45,.5)]">
+          <p className="mb-0 mt-3 text-[clamp(10px,2.9vw,12px)] font-semibold uppercase tracking-[.28em] [text-indent:.28em] md:mt-4 md:text-[clamp(11px,1.1vw,15px)] [text-shadow:0_1px_8px_rgba(0,70,70,.45)]">
             {artist.tagline}
           </p>
-          <nav aria-label="Primary" className="mt-3 flex items-center justify-center gap-x-1 sm:gap-x-3">
+          <nav aria-label="Primary" className="mt-1 flex items-center justify-center gap-x-0 sm:gap-x-3 md:mt-[1.4vw]">
             {links.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                className="px-3 py-3 text-[clamp(12px,1.4vw,16px)] font-medium uppercase tracking-[.18em] text-white no-underline [text-shadow:0_1px_8px_rgba(0,40,45,.5)] hover:underline hover:underline-offset-8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:px-5"
+                className="px-2.5 py-3 text-[clamp(11px,3.1vw,13px)] font-semibold uppercase tracking-[.16em] text-white no-underline [text-shadow:0_1px_8px_rgba(0,70,70,.5)] hover:underline hover:underline-offset-8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:px-5 md:text-[clamp(12px,1.3vw,17px)]"
               >
                 {link.label}
               </Link>
@@ -55,13 +56,17 @@ export default function Home() {
             <figure key={work ? work.slug : i} className={`m-0 min-w-0 ${i === 2 ? "hidden md:block" : ""}`}>
               {work ? (
                 <Link to={`/gallery/${work.slug}`} className="block no-underline">
-                  <img src={work.image} alt={work.alt} loading="lazy" decoding="async" className="aspect-[4/5] w-full bg-[#e4e0d8] object-cover" />
+                  {work.image ? (
+                    <img src={work.image} alt={work.alt ?? work.title} loading="lazy" decoding="async" className="aspect-[4/5] w-full bg-[#e4e0d8] object-cover" />
+                  ) : (
+                    <Slot label={`[PHOTO: ${work.title}]`} className="aspect-[4/5]" />
+                  )}
                 </Link>
               ) : (
                 <Slot label={`[ARTWORK 0${i + 1}]`} className="aspect-[4/5]" />
               )}
               <figcaption className="mt-3 text-sm sm:text-[17px]" style={{ fontFamily: "var(--font-display)" }}>
-                {work ? `${work.title}, ${work.year}` : "[Title], [Year]"}
+                {work ? [work.title, work.year].filter(Boolean).join(", ") : "[Title], [Year]"}
               </figcaption>
             </figure>
           ))}

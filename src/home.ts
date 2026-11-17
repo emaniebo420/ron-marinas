@@ -1,14 +1,15 @@
 /**
  * Home page hero painting (file lives in /public).
- * hero-clean.jpg is the painting with the baked-in title/menu/tagline removed
- * (flat sky only). The original upload stays untouched as hero.jpg.
+ * hero-painting.jpg is Ron's clean cover painting (no text), shown uncropped.
  */
-export const heroImage: string = "/hero-clean.jpg";
+export const heroImage: string = "/hero-painting.jpg";
+/** Phone version: same painting cropped to the figure, with the smoke column and sky extended upward for the title. */
+export const heroPhoneImage: string = "/hero-painting-phone.jpg";
 export const heroAlt =
   "Painting of a young man holding a cigarette against a turquoise sky, pink horizon and green foliage.";
 
 /** Sky colour sampled from the painting; the page extends it above the image. */
-export const skyColor = "rgb(15, 217, 205)";
+export const skyColor = "rgb(100, 214, 204)";
 
 /** Quote shown under the hero. */
 export const homeQuote = {
