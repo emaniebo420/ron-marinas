@@ -15,18 +15,19 @@ export interface Work {
   alt?: string;
 }
 
-export interface Exhibition {
-  title: string;
-  meta: string;
-}
-
 export const artist = {
   name: "Ron Mariñas",
   tagline: "Painter · Artist",
   intro: "",
   statement: "",
-  bio: "",
-  email: "",
+  bio: [
+    "Ron Mariñas b. 1996 creates vibrant figurative paintings that explore the relationship between fashion, identity, and the emotional landscape of contemporary life. Through expressive color, elegant compositions, and carefully observed body language, his work examines the ways individuals construct and communicate their sense of self.",
+    "Fashion emerges as a recurring visual language within his practice not as a symbol of status, but as an expression of individuality, confidence, and personal truth. Like a second skin, it becomes a reflection of emotion, character, and the complexities of human experience.",
+    "Blending contemporary imagery with a poetic sensibility, Mariñas creates immersive narratives that celebrate authenticity and self-expression. His figures inhabit spaces suspended between reality and imagination, embodying moments of vulnerability, desire, resilience, and transformation. At the heart of his practice is a fascination with the elegance of the human form and the stories conveyed through gesture and presence.",
+    "Ultimately, his work invites viewers to embrace their individuality and remain true to themselves, finding beauty and strength in who they are despite the circumstances that surround them.",
+  ],
+  portrait: "/artist.jpg",
+  email: "ronmarinasart@gmail.com",
   instagram: "https://instagram.com/imronmarinas",
   instagramHandle: "@imronmarinas",
 };
@@ -68,6 +69,44 @@ export const processPhotos = [1, 2, 3, 4, 5, 6, 7].map((n) => ({
   alt: "Behind the scenes in the studio",
 }));
 
+export type Exhibition = { year: number; title: string; date: string; venue: string };
+
+/** Newest first. Source: Ron's EXHIBITION HISTORY document (typos corrected, dates ordered). */
 export const exhibitions: Exhibition[] = [
-  { title: "The Garden of Us (group exhibition)", meta: "" },
+  { year: 2026, title: "The Garden of Us", date: "October 3, 2026 – January 2027", venue: "Orange Project, Bacolod City, Philippines" },
+  { year: 2026, title: "Echo Chamber", date: "July 12, 2026", venue: "Gallery Sort Of, Quezon City, Philippines" },
+  { year: 2026, title: "Pageant Drama", date: "March 12, 2026", venue: "Gallery Sort Of & Qube Gallery, River City, Bangkok" },
+  { year: 2026, title: "Blue, The Warmest Color", date: "February 27 – March 13, 2026", venue: "Village Art Gallery, Alabang City, Philippines" },
+  { year: 2025, title: "Tambay, Toma, Tropa", date: "October 12, 2025", venue: "Gallery Sort Of, Quezon City, Philippines" },
+  { year: 2025, title: "Portrait on Portrait", date: "August 9 – September 6, 2025", venue: "Art Toys PH, Metro Manila, Philippines" },
+  { year: 2025, title: "Seven", date: "June 28, 2025", venue: "Village Art Gallery, Makati City, Philippines" },
+  { year: 2025, title: "Lean on Me", date: "June 26, 2025", venue: "Gallery Sort Of, Quezon City, Philippines" },
+  { year: 2025, title: "Stay for a While", date: "April 10–25, 2025", venue: "Leon Gallery, Makati City, Philippines" },
+  { year: 2025, title: "I Take a Sledgehammer to a Diamond", date: "January 10–30, 2025", venue: "Galerie Stephanie, Mandaluyong City, Philippines" },
+  { year: 2024, title: "Beyond the Tears (Solo Exhibition)", date: "November 10, 2024", venue: "Secret Fresh, San Juan City, Philippines" },
+  { year: 2024, title: "In the Grip of Desire (Solo Exhibition)", date: "July 20, 2024", venue: "METRO Gallery, San Juan City, Philippines" },
+  { year: 2024, title: "Cosmo & Vine", date: "May 18, 2024", venue: "Kondwi, Makati City, Philippines" },
+  { year: 2024, title: "It’s Over When I Say It’s Over", date: "March 13–27, 2024", venue: "Rojo Galerie, Pasig City, Philippines" },
+  { year: 2023, title: "Tribute to Audrey", date: "October 19–23, 2023", venue: "Art Anton, Pasay City, Philippines" },
+  { year: 2023, title: "Resemblance", date: "October 4, 2023", venue: "Art Elaan, Paranaque City, Philippines" },
+  { year: 2023, title: "The Advent of Elation (Solo Exhibition)", date: "April 29 – May 13, 2023", venue: "METRO Gallery, San Juan City, Philippines" },
+  { year: 2023, title: "Xavier Art Fest", date: "January 27–29, 2023", venue: "Xavier School, San Juan City, Philippines" },
+  { year: 2023, title: "S̶o̶r̶r̶y̶ Not Sorry (Two-Man Exhibition)", date: "January 7–22, 2023", venue: "Galerie Stephanie, Mandaluyong City, Philippines" },
+  { year: 2022, title: "The Manila’Bang Show 2022", date: "December 8–11, 2022", venue: "Festival Mall, Alabang City, Philippines" },
+  { year: 2022, title: "I Give You My Art", date: "December 7, 2022", venue: "Provenance Art Gallery, Makati City, Philippines" },
+  { year: 2022, title: "Choke Me, Baroque", date: "August 27, 2022", venue: "METRO Gallery, San Juan City, Philippines" },
+  { year: 2022, title: "Opulence", date: "June 6, 2022", venue: "WhiteWalls Gallery, Makati City, Philippines" },
+  { year: 2022, title: "Que Sera Sera", date: "May 2022", venue: "Arte Bettina, Makati City, Philippines" },
+  { year: 2021, title: "Leaving Neverland", date: "November 27, 2021", venue: "WhiteWalls Gallery, Makati City, Philippines" },
+  { year: 2021, title: "As We Should (Solo Exhibition)", date: "November 2021", venue: "RGallery, Quezon City, Philippines" },
+  { year: 2021, title: "Corpus Delicity", date: "October 27 – November 10, 2021", venue: "Galerie Stephanie, Mandaluyong City, Philippines" },
+  { year: 2021, title: "Vision x Interpolation", date: "September 2021", venue: "Art Anton, Pasay City, Philippines" },
+  { year: 2021, title: "Parts & Parcels", date: "August 2021", venue: "Arte Bettina, Makati City, Philippines" },
+  { year: 2021, title: "Sonnet 54", date: "June 2021", venue: "Galerie Anna, Mandaluyong City, Philippines" },
+  { year: 2021, title: "Bare Thoughts", date: "March 2021", venue: "RGallery, Quezon City, Philippines" },
+  { year: 2020, title: "Rondo", date: "November – December 2020", venue: "Altro Mondo Creative Space, Makati City, Philippines" },
+  { year: 2020, title: "Seeing Eye to Eye", date: "October 2020", venue: "VMeme Contemporary Art Gallery, Pasig City, Philippines" },
+  { year: 2020, title: "Teks", date: "September 2020", venue: "Aloud Space Lab, Online, Philippines" },
+  { year: 2020, title: "Proof of Life", date: "April 20, 2020", venue: "Pineapple Lab Online Auction, Metro Manila, Philippines" },
+  { year: 2020, title: "Amoré", date: "February 2020", venue: "La Salle Spark Museum, Muntinlupa City, Philippines" },
 ];
