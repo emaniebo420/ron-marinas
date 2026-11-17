@@ -21,7 +21,7 @@ export default function About() {
             </p>
             <Link
               to="/gallery"
-              className="mt-8 inline-flex min-h-12 items-center rounded-full border border-fg px-8 text-sm uppercase tracking-[.18em] text-fg no-underline"
+              className="mt-8 inline-flex min-h-12 items-center rounded-full border border-white px-8 text-sm uppercase tracking-[.18em] text-white no-underline hover:bg-white/15"
             >
               View the gallery
             </Link>
@@ -44,12 +44,12 @@ export default function About() {
         </Container>
       </main>
 
-      <PinkBand>
+      <PinkBand image="/cta-garden.jpg">
         <div className="flex flex-col items-center gap-y-7">
-          <h2 className="m-0 font-display text-[clamp(36px,5vw,64px)] font-normal leading-none">Interested in a piece?</h2>
+          <h2 className="m-0 font-display text-[clamp(36px,5vw,64px)] font-normal leading-none [text-shadow:0_2px_16px_rgba(0,30,30,.45)]">Interested in a piece?</h2>
           <Link
             to="/contact"
-            className="inline-flex min-h-12 items-center rounded-full border border-fg px-8 text-sm uppercase tracking-[.18em] text-fg no-underline"
+            className="inline-flex min-h-12 items-center rounded-full border border-white px-8 text-sm uppercase tracking-[.18em] text-white no-underline hover:bg-white/15"
           >
             Get in touch
           </Link>
