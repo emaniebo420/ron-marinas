@@ -135,7 +135,7 @@ export function PinkBand({ children, image }: { children: ReactNode; image?: str
               backgroundColor: "#1d4d4a",
               backgroundImage: `linear-gradient(rgba(8,32,32,.30), rgba(8,32,32,.30)), url(${image})`,
               backgroundSize: "cover",
-              backgroundPosition: "center 62%",
+              backgroundPosition: "center 74%",
             }
           : undefined
       }
