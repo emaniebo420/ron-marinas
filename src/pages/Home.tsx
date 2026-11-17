@@ -24,8 +24,8 @@ export default function Home() {
             className="block h-auto w-full"
           />
         </picture>
-        <header className="absolute left-[14%] right-0 top-[6.5%] z-10 flex flex-col items-center text-center md:left-[35%] md:right-auto md:top-[16%] md:w-[40%]">
-          <h1 className="m-0 font-sans text-[clamp(24px,7vw,30px)] font-semibold uppercase leading-none tracking-[.28em] [text-indent:.28em] md:text-[clamp(30px,3.7vw,60px)] [text-shadow:0_1px_10px_rgba(0,70,70,.4)]">
+        <header className="absolute inset-x-0 top-[6.5%] z-10 flex flex-col items-center text-center md:inset-x-auto md:left-[35%] md:top-[16%] md:w-[40%]">
+          <h1 className="m-0 font-sans text-[clamp(22px,6.3vw,28px)] font-semibold uppercase leading-none tracking-[.26em] [text-indent:.26em] md:text-[clamp(30px,3.7vw,60px)] [text-shadow:0_1px_10px_rgba(0,70,70,.4)]">
             <span className="sr-only">{artist.name}</span>
             <span aria-hidden="true">Ron Mariñas</span>
           </h1>
