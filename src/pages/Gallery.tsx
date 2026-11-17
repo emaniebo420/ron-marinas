@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Container, PageBand, PinkBand, SectionHeading, Slot, usePageTitle } from "../components/ui";
-import { artist, processYears, works } from "../content";
+import { artist, processPhotos, works } from "../content";
 
 const PLACEHOLDER_WORK_COUNT = 6;
 export default function Gallery() {
@@ -70,11 +70,10 @@ export default function Gallery() {
 
         <Container className="pb-20 sm:pb-28">
           <SectionHeading title="Process" note="Behind the work" />
-          <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4">
-            {processYears.map((year) => (
-              <figure key={year} className="m-0 flex min-w-0 flex-col gap-3">
-                <Slot label={`[WIP ${year} IMAGE]`} className="aspect-square" />
-                <figcaption className="text-xs text-muted sm:text-[13px]">Work in progress, {year}</figcaption>
+          <div className="columns-2 gap-3 sm:gap-6 lg:columns-4">
+            {processPhotos.map((photo) => (
+              <figure key={photo.src} className="m-0 mb-3 break-inside-avoid sm:mb-6">
+                <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" className="block h-auto w-full bg-[#e4e0d8]" />
               </figure>
             ))}
           </div>

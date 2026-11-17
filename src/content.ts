@@ -62,7 +62,11 @@ export const works: Work[] = [
   { slug: "sanctuary-on-the-rocks", image: "/works/sanctuary-on-the-rocks.jpg", title: "Sanctuary on the Rocks" },
 ];
 
-export const processYears = ["2018", "2019", "2020", "2021"] as const;
+/** Behind-the-scenes studio photos (files in /public/process). */
+export const processPhotos = [1, 2, 3, 4, 5, 6, 7].map((n) => ({
+  src: `/process/process-${n}.jpg`,
+  alt: "Behind the scenes in the studio",
+}));
 
 export const exhibitions: Exhibition[] = [
   { title: "The Garden of Us (group exhibition)", meta: "" },
