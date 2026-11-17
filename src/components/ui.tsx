@@ -125,9 +125,21 @@ export function PageBand({ title, kicker }: { title: string; kicker?: string }) 
   );
 }
 
-export function PinkBand({ children }: { children: ReactNode }) {
+export function PinkBand({ children, image }: { children: ReactNode; image?: string }) {
   return (
-    <div className="band-pink relative">
+    <div
+      className={image ? "relative text-white" : "band-pink relative"}
+      style={
+        image
+          ? {
+              backgroundColor: "#1d4d4a",
+              backgroundImage: `linear-gradient(rgba(8,32,32,.34), rgba(8,32,32,.34)), url(${image})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }
+          : undefined
+      }
+    >
       <svg aria-hidden="true" viewBox="0 0 1440 60" preserveAspectRatio="none" className="-mt-px block h-[60px] w-full">
         <path
           className="fill-bg"
