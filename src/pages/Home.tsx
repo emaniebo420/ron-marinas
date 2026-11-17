@@ -24,20 +24,20 @@ export default function Home() {
             className="block h-auto w-full"
           />
         </picture>
-        <header className="absolute inset-x-0 top-[6.5%] z-10 flex flex-col items-center text-center md:inset-x-auto md:left-[35%] md:top-[16%] md:w-[40%]">
-          <h1 className="m-0 font-sans text-[clamp(22px,6.3vw,28px)] font-semibold uppercase leading-none tracking-[.26em] [text-indent:.26em] md:text-[clamp(30px,3.7vw,60px)] [text-shadow:0_1px_10px_rgba(0,70,70,.4)]">
+        <header className="absolute inset-x-0 left-[12%] right-[2%] top-[8.5%] z-10 flex flex-col items-center text-center md:inset-x-auto md:right-auto md:left-[34%] md:top-[17%] md:w-[42%]">
+          <h1 className="m-0 text-[clamp(26px,7.6vw,34px)] font-normal uppercase leading-none tracking-[.14em] [text-indent:.14em] [text-shadow:0_1px_12px_rgba(0,70,70,.35)] whitespace-nowrap md:text-[clamp(40px,4.4vw,70px)]" style={{ fontFamily: "var(--font-display)" }}>
             <span className="sr-only">{artist.name}</span>
             <span aria-hidden="true">Ron Mariñas</span>
           </h1>
-          <p className="mb-0 mt-3 text-[clamp(10px,2.9vw,12px)] font-semibold uppercase tracking-[.28em] [text-indent:.28em] md:mt-4 md:text-[clamp(11px,1.1vw,15px)] [text-shadow:0_1px_8px_rgba(0,70,70,.45)]">
+          <p className="mb-0 mt-4 text-[clamp(10px,2.9vw,12px)] font-medium uppercase tracking-[.34em] [text-indent:.34em] [text-shadow:0_1px_8px_rgba(0,70,70,.45)] md:mt-5 md:text-[clamp(11px,1.05vw,15px)]">
             {artist.tagline}
           </p>
-          <nav aria-label="Primary" className="mt-1 flex items-center justify-center gap-x-0 sm:gap-x-3 md:mt-[1.4vw]">
+          <nav aria-label="Primary" className="mt-2 flex items-center justify-center gap-x-0 sm:gap-x-3 md:mt-[1.4vw]">
             {links.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                className="px-2.5 py-3 text-[clamp(11px,3.1vw,13px)] font-semibold uppercase tracking-[.16em] text-white no-underline [text-shadow:0_1px_8px_rgba(0,70,70,.5)] hover:underline hover:underline-offset-8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:px-5 md:text-[clamp(12px,1.3vw,17px)]"
+                className="px-2.5 py-3 text-[clamp(11px,3.1vw,13px)] font-medium uppercase tracking-[.22em] text-white no-underline [text-shadow:0_1px_8px_rgba(0,70,70,.5)] hover:underline hover:underline-offset-8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:px-5 md:text-[clamp(12px,1.3vw,17px)]"
               >
                 {link.label}
               </Link>
