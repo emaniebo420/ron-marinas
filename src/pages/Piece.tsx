@@ -11,7 +11,7 @@ export default function Piece() {
   if (!work) {
     return (
       <>
-        <PageBand title="Not found" kicker={artist.tagline} />
+        <PageBand title="Not found" kicker={artist.tagline} image="/cta-garden.jpg" />
         <main>
           <Container className="pb-24 pt-10 text-center">
             <p className="m-0 text-muted">That piece isn't in the gallery.</p>
@@ -37,7 +37,7 @@ export default function Piece() {
 
   return (
     <>
-      <PageBand title={work.title} kicker={work.year ?? artist.tagline} />
+      <PageBand title={work.title} kicker={work.year ?? artist.tagline} image="/cta-garden.jpg" />
       <main>
         <Container className="pb-20 pt-6 sm:pb-28">
           <Link to="/gallery" className="mb-6 inline-block py-2 text-xs uppercase tracking-[.2em] text-muted no-underline">
