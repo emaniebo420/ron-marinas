@@ -29,7 +29,7 @@ export default function Home() {
             <img
               src="/signature.png"
               alt={artist.name}
-              className="block h-auto w-[min(88%,340px)] [filter:drop-shadow(0_0_1px_rgba(255,255,255,.9))_drop-shadow(0_1px_8px_rgba(0,70,70,.5))] md:w-[min(92%,640px)]"
+              className="block h-auto w-[min(88%,340px)] [filter:drop-shadow(0_1px_6px_rgba(0,60,60,.45))] md:w-[min(92%,640px)]"
             />
           </h1>
           <p className="mb-0 mt-4 text-[clamp(10px,2.9vw,12px)] font-medium uppercase tracking-[.34em] [text-indent:.34em] [text-shadow:0_1px_8px_rgba(0,70,70,.45)] md:mt-5 md:text-[clamp(11px,1.05vw,15px)]">
