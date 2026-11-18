@@ -73,12 +73,22 @@ function SiteHeader({ light = false }: { light?: boolean }) {
         light ? "text-white [text-shadow:0_1px_10px_rgba(0,40,45,.45)]" : "text-[#073b3e]"
       }`}
     >
-      <Link
-        to="/"
-        className="text-[clamp(15px,2.2vw,20px)] font-semibold uppercase tracking-[.32em] text-inherit no-underline [text-indent:.32em]"
-      >
-        {artist.name}
-      </Link>
+      {light ? (
+        <Link to="/" aria-label={artist.name} className="block">
+          <img
+            src="/signature.png"
+            alt={artist.name}
+            className="block h-auto w-[190px] [filter:drop-shadow(0_1px_8px_rgba(0,70,70,.5))] sm:w-[240px]"
+          />
+        </Link>
+      ) : (
+        <Link
+          to="/"
+          className="text-[clamp(15px,2.2vw,20px)] font-semibold uppercase tracking-[.32em] text-inherit no-underline [text-indent:.32em]"
+        >
+          {artist.name}
+        </Link>
+      )}
       <nav aria-label="Primary" className="mt-3 flex items-center justify-center gap-x-1 sm:gap-x-3">
         {navItems.map((item) => (
           <NavLink
