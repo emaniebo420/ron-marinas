@@ -24,10 +24,13 @@ export default function Home() {
             className="block h-auto w-full"
           />
         </picture>
-        <header className="absolute inset-x-0 left-[12%] right-[2%] top-[8.5%] z-10 flex flex-col items-center text-center md:inset-x-auto md:right-auto md:left-[34%] md:top-[17%] md:w-[42%]">
-          <h1 className="m-0 text-[clamp(26px,7.6vw,34px)] font-normal uppercase leading-none tracking-[.14em] [text-indent:.14em] [text-shadow:0_1px_12px_rgba(0,70,70,.35)] whitespace-nowrap md:text-[clamp(40px,4.4vw,70px)]" style={{ fontFamily: "var(--font-display)" }}>
-            <span className="sr-only">{artist.name}</span>
-            <span aria-hidden="true">Ron Mariñas</span>
+        <header className="absolute inset-x-0 left-[12%] right-[2%] top-[8.5%] z-10 flex flex-col items-center text-center md:inset-x-auto md:right-auto md:left-[31%] md:top-[6%] md:w-[42%]">
+          <h1 className="m-0 flex w-full justify-center">
+            <img
+              src="/signature.png"
+              alt={artist.name}
+              className="block h-auto w-[min(74%,280px)] [filter:drop-shadow(0_0_1px_rgba(255,255,255,.9))_drop-shadow(0_1px_8px_rgba(0,70,70,.5))] md:w-[min(76%,500px)]"
+            />
           </h1>
           <p className="mb-0 mt-4 text-[clamp(10px,2.9vw,12px)] font-medium uppercase tracking-[.34em] [text-indent:.34em] [text-shadow:0_1px_8px_rgba(0,70,70,.45)] md:mt-5 md:text-[clamp(11px,1.05vw,15px)]">
             {artist.tagline}
