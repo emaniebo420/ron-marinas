@@ -127,7 +127,7 @@ export default function Home() {
 
       <PinkBand image="/cta-garden.jpg">
         <div className="flex flex-col items-center gap-y-7">
-          <h2 className="m-0 text-[clamp(36px,5vw,64px)] font-normal leading-none [text-shadow:0_2px_16px_rgba(0,30,30,.45)]" style={{ fontFamily: "var(--font-display)" }}>
+          <h2 className="m-0 text-[clamp(25px,3.5vw,45px)] font-normal leading-none [text-shadow:0_2px_16px_rgba(0,30,30,.45)]" style={{ fontFamily: "var(--font-display)" }}>
             Interested in a piece?
           </h2>
           <Link
