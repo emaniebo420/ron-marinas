@@ -78,7 +78,7 @@ function SiteHeader({ light = false }: { light?: boolean }) {
           <img
             src="/signature.png"
             alt={artist.name}
-            className="block h-auto w-[190px] [filter:drop-shadow(0_1px_8px_rgba(0,70,70,.5))] sm:w-[240px]"
+            className="block h-auto w-[210px] [filter:drop-shadow(0_1px_8px_rgba(0,70,70,.5))] sm:w-[280px]"
           />
         </Link>
       ) : (
