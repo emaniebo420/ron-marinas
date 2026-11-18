@@ -189,10 +189,29 @@ export function Footer() {
         <span>
           © {new Date().getFullYear()} {artist.name}
         </span>
-        <a href={artist.instagram} rel="noopener noreferrer" className="underline">
+        <a
+          href={artist.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${artist.instagramHandle} on Instagram`}
+          className="inline-flex min-h-11 items-center gap-2 text-muted no-underline hover:text-fg"
+        >
+          <InstagramIcon className="h-[18px] w-[18px]" />
           {artist.instagramHandle}
         </a>
       </Container>
     </footer>
+  );
+}
+
+
+/** Simple outline Instagram glyph (rounded square, lens, dot). */
+export function InstagramIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4.2" />
+      <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none" />
+    </svg>
   );
 }
