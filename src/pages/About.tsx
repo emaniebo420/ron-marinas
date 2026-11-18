@@ -19,7 +19,7 @@ export default function About() {
             className="mx-auto block aspect-[4/5] w-full max-w-[420px] bg-[#e4e0d8] object-cover object-top md:mx-0"
           />
           <div className="min-w-0 max-w-[680px]">
-            <p className="m-0 mb-4 text-xs uppercase tracking-[.3em] text-muted">Biography</p>
+            <p className="m-0 mb-4 text-xs font-semibold uppercase tracking-[.3em] text-muted">Biography</p>
             <p className="m-0 mb-5 text-base leading-relaxed text-muted sm:text-[17px]">{artist.bio[0]}</p>
             {artist.bio.slice(1).map((paragraph) => (
               <p key={paragraph} className="m-0 mb-5 text-base leading-relaxed text-muted sm:text-[17px]">
