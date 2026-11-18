@@ -110,3 +110,7 @@ export const exhibitions: Exhibition[] = [
   { year: 2020, title: "Proof of Life", date: "April 20, 2020", venue: "Pineapple Lab Online Auction, Metro Manila, Philippines" },
   { year: 2020, title: "Amoré", date: "February 2020", venue: "La Salle Spark Museum, Muntinlupa City, Philippines" },
 ];
+
+/** Small (640px) WebP copy of a work's image, used in grids so pages load fast; the full file is used on the piece page. */
+export const thumbOf = (image: string, large = false): string =>
+  image.replace(/^\/works\/([^/]+)\.(jpg|webp)$/, large ? "/works/thumbs/lg/$1.webp" : "/works/thumbs/$1.webp");

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Container, PageBand, PinkBand, SectionHeading, Slot, usePageTitle } from "../components/ui";
-import { artist, processPhotos, works } from "../content";
+import { artist, processPhotos, works, thumbOf } from "../content";
 
 const PLACEHOLDER_WORK_COUNT = 6;
 export default function Gallery() {
@@ -26,7 +26,7 @@ export default function Gallery() {
                     <Link to={`/gallery/${work.slug}`} className="block no-underline">
                       {work.image ? (
                         <img
-                          src={work.image}
+                          src={thumbOf(work.image)}
                           alt={work.alt ?? work.title}
                           loading="lazy"
                           decoding="async"
