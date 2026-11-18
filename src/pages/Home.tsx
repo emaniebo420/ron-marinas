@@ -60,7 +60,7 @@ export default function Home() {
               {work ? (
                 <Link to={`/gallery/${work.slug}`} className="block no-underline">
                   {work.image ? (
-                    <img src={work.image} alt={work.alt ?? work.title} loading="lazy" decoding="async" className="aspect-[4/5] w-full bg-[#e4e0d8] object-cover" />
+                    <img src={work.image} alt={work.alt ?? work.title} loading="lazy" decoding="async" className={`aspect-[4/5] w-full ${work.image?.endsWith(".webp") ? "object-contain p-2" : "bg-[#e4e0d8] object-cover"}`} />
                   ) : (
                     <Slot label={`[PHOTO: ${work.title}]`} className="aspect-[4/5]" />
                   )}

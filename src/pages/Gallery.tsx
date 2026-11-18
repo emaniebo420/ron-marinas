@@ -30,7 +30,7 @@ export default function Gallery() {
                           alt={work.alt ?? work.title}
                           loading="lazy"
                           decoding="async"
-                          className="aspect-[4/5] w-full bg-slot object-cover"
+                          className={`aspect-[4/5] w-full ${work.image.endsWith(".webp") ? "object-contain p-2" : "bg-slot object-cover"}`}
                         />
                       ) : (
                         <Slot label={`[PHOTO: ${work.title}]`} className="aspect-[4/5]" />

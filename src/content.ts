@@ -34,9 +34,9 @@ export const artist = {
 
 /** Empty = the page renders labeled placeholder slots. */
 export const works: Work[] = [
-  { slug: "joseph", image: "/works/joseph.jpg", title: "Joseph", medium: "Oil on canvas", size: "12 × 12 in" },
-  { slug: "weightless-heart", image: "/works/weightless-heart.jpg", title: "Weightless Heart", medium: "Acrylic on resin sculpture", size: "13 × 12 × 7 in" },
-  { slug: "breathe-of-relief", image: "/works/breathe-of-relief.jpg", title: "Breathe of Relief", medium: "Acrylic on resin sculpture", size: "13 × 12 × 7 in" },
+  { slug: "joseph", image: "/works/joseph.webp", title: "Joseph", medium: "Oil on canvas", size: "12 × 12 in" },
+  { slug: "weightless-heart", image: "/works/weightless-heart.webp", title: "Weightless Heart", medium: "Acrylic on resin sculpture", size: "13 × 12 × 7 in" },
+  { slug: "breathe-of-relief", image: "/works/breathe-of-relief.webp", title: "Breathe of Relief", medium: "Acrylic on resin sculpture", size: "13 × 12 × 7 in" },
   { slug: "next-station-is-couture", image: "/works/next-station-is-couture.jpg", title: "Next Station is Couture", medium: "Oil on canvas", size: "2 × 3 in" },
   { slug: "jeepney-couture-v", image: "/works/jeepney-couture-v.jpg", title: "Jeepney Couture V", medium: "Oil on canvas", size: "30 × 40 cm" },
   { slug: "jeepney-couture-iv", image: "/works/jeepney-couture-iv.jpg", title: "Jeepney Couture IV", medium: "Oil on canvas", size: "12 × 24 in" },
@@ -49,7 +49,7 @@ export const works: Work[] = [
   { slug: "sampaguita-girl", image: "/works/sampaguita-girl.jpg", title: "Sampaguita Girl", medium: "Oil on canvas", size: "2 × 3 in" },
   { slug: "my-accordion-player", image: "/works/my-accordion-player.jpg", title: "My Accordion Player", medium: "Oil on canvas", size: "2 × 3 in" },
   { slug: "lying-red-boy", image: "/works/lying-red-boy.jpg", title: "Lying Red Boy", medium: "Oil on canvas", size: "2 × 3 in" },
-  { slug: "peaceful-exhale", image: "/works/peaceful-exhale.jpg", title: "Peaceful Exhale", medium: "Oil on canvas", size: "9 × 9 in" },
+  { slug: "peaceful-exhale", image: "/works/peaceful-exhale.webp", title: "Peaceful Exhale", medium: "Oil on canvas", size: "9 × 9 in" },
   { slug: "occupied-only-with-our-own-reflection", image: "/works/occupied-only-with-our-own-reflection.jpg", title: "Occupied Only with our Own Reflection", medium: "Oil on canvas", size: "18 × 24 in" },
   { slug: "the-luxury-of-trusting-one", image: "/works/the-luxury-of-trusting-one.jpg", title: "The Luxury of Trusting One", medium: "Oil on canvas", size: "18 × 24 in" },
   { slug: "lock-your-happiness", image: "/works/lock-your-happiness.jpg", title: "Lock your Happiness", medium: "Oil on canvas", size: "18 × 24 in" },
