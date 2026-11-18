@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { PinkBand, Slot, usePageTitle } from "../components/ui";
+import { PinkBand, usePageTitle } from "../components/ui";
 import { artist, works } from "../content";
-import { heroAlt, heroImage, heroPhoneImage, homeQuote } from "../home";
+import { selectedRows, heroAlt, heroImage, heroPhoneImage, homeQuote } from "../home";
 
 const links = [
   { to: "/gallery", label: "Gallery" },
@@ -49,29 +49,38 @@ export default function Home() {
         </header>
       </section>
 
-      <section className="mx-auto max-w-[1200px] px-5 py-16 sm:px-10 sm:py-24">
+      <section className="mx-auto max-w-[1240px] px-5 py-16 sm:px-10 sm:py-24">
         <p className="m-0 mb-3 text-center text-xs uppercase tracking-[.3em] text-[#5e5a53]">Selected works</p>
-        <h2 className="m-0 mb-10 text-center text-[clamp(34px,5vw,60px)] font-normal leading-none" style={{ fontFamily: "var(--font-display)" }}>
+        <h2 className="m-0 mb-12 text-center text-[clamp(34px,5vw,60px)] font-normal leading-none" style={{ fontFamily: "var(--font-display)" }}>
           Recent paintings
         </h2>
-        <div className="grid grid-cols-2 gap-3 sm:gap-7 md:grid-cols-3">
-          {(works.length ? works.slice(0, 3) : [null, null, null]).map((work, i) => (
-            <figure key={work ? work.slug : i} className={`m-0 min-w-0 ${i === 2 ? "hidden md:block" : ""}`}>
-              {work ? (
-                <Link to={`/gallery/${work.slug}`} className="block no-underline">
-                  {work.image ? (
-                    <img src={work.image} alt={work.alt ?? work.title} loading="lazy" decoding="async" className={`aspect-[4/5] w-full ${work.image?.endsWith(".webp") ? "object-contain p-2" : "bg-[#e4e0d8] object-cover"}`} />
-                  ) : (
-                    <Slot label={`[PHOTO: ${work.title}]`} className="aspect-[4/5]" />
-                  )}
-                </Link>
-              ) : (
-                <Slot label={`[ARTWORK 0${i + 1}]`} className="aspect-[4/5]" />
-              )}
-              <figcaption className="mt-3 text-sm sm:text-[17px]" style={{ fontFamily: "var(--font-display)" }}>
-                {work ? [work.title, work.year].filter(Boolean).join(", ") : "[Title], [Year]"}
-              </figcaption>
-            </figure>
+        <div className="flex flex-col gap-12 md:gap-20">
+          {selectedRows.map((row, r) => (
+            <div key={r} className="flex flex-col gap-12 md:flex-row md:gap-10">
+              {row.map(({ slug, ratio }) => {
+                const work = works.find((w) => w.slug === slug);
+                if (!work?.image) return null;
+                return (
+                  <figure key={slug} className="group m-0 min-w-0 md:[flex:var(--r)_1_0%]" style={{ "--r": ratio } as React.CSSProperties}>
+                    <Link to={`/gallery/${slug}`} className="block overflow-hidden bg-[#e4e0d8] no-underline" style={{ aspectRatio: String(ratio) }}>
+                      <img
+                        src={work.image}
+                        alt={work.alt ?? work.title}
+                        loading="lazy"
+                        decoding="async"
+                        className="block h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                      />
+                    </Link>
+                    <figcaption className="mt-4">
+                      <span className="block text-[clamp(20px,2vw,26px)] leading-tight" style={{ fontFamily: "var(--font-display)" }}>
+                        {work.title}
+                      </span>
+                      {work.medium && <span className="mt-1 block text-xs uppercase tracking-[.16em] text-[#5e5a53]">{work.medium}</span>}
+                    </figcaption>
+                  </figure>
+                );
+              })}
+            </div>
           ))}
         </div>
         <div className="mt-10 text-center">

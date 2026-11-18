@@ -16,3 +16,25 @@ export const homeQuote = {
   text: "My paintings are the most precious thing in my life. It’s like a second penis to me, which means not everyone can have them.",
   by: "Ron M.",
 };
+
+/**
+ * Home "Selected works": each painting is shown whole (never cropped) at its real proportions.
+ * Rows share one height on laptop (each work is as wide as its ratio needs) and stack one per line on phone.
+ * ratio = image width / height.
+ */
+export const selectedRows: { slug: string; ratio: number }[][] = [
+  [
+    { slug: "the-broken-garden-loop", ratio: 0.664 },
+    { slug: "jeepney-couture-v", ratio: 1.349 },
+  ],
+  [
+    { slug: "lets-make-it-flame-free", ratio: 0.669 },
+    { slug: "sampaguita-girl", ratio: 0.759 },
+    { slug: "next-station-is-couture", ratio: 0.672 },
+  ],
+  [
+    { slug: "dinner-at-tiffanys", ratio: 0.998 },
+    { slug: "im-the-unlit-floating-candle", ratio: 1.525 },
+  ],
+  [{ slug: "jeepney-couture-iv", ratio: 1.952 }],
+];
