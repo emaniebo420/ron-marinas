@@ -51,7 +51,7 @@ export default function Home() {
 
       <section className="mx-auto max-w-[1240px] px-5 py-16 sm:px-10 sm:py-24">
         <p className="m-0 mb-3 text-center text-xs uppercase tracking-[.3em] text-[#5e5a53]">Selected works</p>
-        <h2 className="m-0 mb-12 text-center text-[clamp(34px,5vw,60px)] font-normal leading-none" style={{ fontFamily: "var(--font-display)" }}>
+        <h2 className="m-0 mb-12 text-center text-[clamp(34px,5vw,60px)] font-normal leading-none text-[#45b7c6]" style={{ fontFamily: "var(--font-display)" }}>
           Recent paintings
         </h2>
         <div className="flex flex-col gap-12 md:gap-20">

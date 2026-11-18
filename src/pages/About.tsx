@@ -39,7 +39,7 @@ export default function About() {
           <SectionHeading title="Exhibitions" note="Selected" />
           {years.map((year) => (
             <section key={year} className="grid grid-cols-1 gap-x-10 border-b border-rule py-6 sm:grid-cols-[110px_1fr] sm:py-8">
-              <h3 className="m-0 mb-3 font-display text-[clamp(28px,3vw,38px)] font-normal leading-none sm:mb-0">{year}</h3>
+              <h3 className="m-0 mb-3 font-display text-[clamp(28px,3vw,38px)] font-normal leading-none text-[#45b7c6] sm:mb-0">{year}</h3>
               <ul className="m-0 flex list-none flex-col gap-5 p-0">
                 {exhibitions
                   .filter((show) => show.year === year)
