@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { PinkBand, usePageTitle } from "../components/ui";
 import { artist, works } from "../content";
-import { selectedRows, heroAlt, heroImage, heroPhoneImage, homeQuote } from "../home";
+import { selectedRows, phoneColumns, heroAlt, heroImage, heroPhoneImage, homeQuote } from "../home";
 
 const links = [
   { to: "/gallery", label: "Gallery" },
@@ -54,9 +54,30 @@ export default function Home() {
         <h2 className="m-0 mb-12 text-center text-[clamp(34px,5vw,60px)] font-normal leading-none text-[#45b7c6]" style={{ fontFamily: "var(--font-display)" }}>
           Recent paintings
         </h2>
-        <div className="flex flex-col gap-12 md:gap-20">
+        <div className="grid grid-cols-2 items-start gap-x-3 md:hidden">
+          {phoneColumns.map((column, c) => (
+            <div key={c} className="flex flex-col gap-5">
+              {column.map((slug) => {
+                const work = works.find((w) => w.slug === slug);
+                const ratio = selectedRows.flat().find((x) => x.slug === slug)?.ratio;
+                if (!work?.image || !ratio) return null;
+                return (
+                  <figure key={slug} className="m-0">
+                    <Link to={`/gallery/${slug}`} className="block overflow-hidden bg-[#e4e0d8] no-underline" style={{ aspectRatio: String(ratio) }}>
+                      <img src={work.image} alt={work.alt ?? work.title} loading="lazy" decoding="async" className="block h-full w-full object-cover" />
+                    </Link>
+                    <figcaption className="mt-2 text-[15px] leading-tight" style={{ fontFamily: "var(--font-display)" }}>
+                      {work.title}
+                    </figcaption>
+                  </figure>
+                );
+              })}
+            </div>
+          ))}
+        </div>
+        <div className="hidden flex-col gap-20 md:flex">
           {selectedRows.map((row, r) => (
-            <div key={r} className="flex flex-col gap-12 md:flex-row md:gap-10">
+            <div key={r} className="flex flex-row gap-10">
               {row.map(({ slug, ratio }) => {
                 const work = works.find((w) => w.slug === slug);
                 if (!work?.image) return null;

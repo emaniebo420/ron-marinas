@@ -38,3 +38,9 @@ export const selectedRows: { slug: string; ratio: number }[][] = [
   ],
   [{ slug: "jeepney-couture-iv", ratio: 1.952 }],
 ];
+
+/** Phone grid: two columns with near-equal total height (each painting shown whole). */
+export const phoneColumns: string[][] = [
+  ["the-broken-garden-loop", "jeepney-couture-v", "sampaguita-girl", "im-the-unlit-floating-candle"],
+  ["lets-make-it-flame-free", "next-station-is-couture", "dinner-at-tiffanys", "jeepney-couture-iv"],
+];
