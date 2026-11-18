@@ -20,7 +20,7 @@ export default function About() {
           />
           <div className="min-w-0 max-w-[680px]">
             <p className="m-0 mb-4 text-xs uppercase tracking-[.3em] text-muted">Biography</p>
-            <p className="m-0 mb-6 text-[clamp(18px,1.6vw,21px)] leading-[1.65] text-fg">{artist.bio[0]}</p>
+            <p className="m-0 mb-5 text-base leading-relaxed text-muted sm:text-[17px]">{artist.bio[0]}</p>
             {artist.bio.slice(1).map((paragraph) => (
               <p key={paragraph} className="m-0 mb-5 text-base leading-relaxed text-muted sm:text-[17px]">
                 {paragraph}
