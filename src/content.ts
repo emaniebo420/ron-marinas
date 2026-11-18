@@ -59,8 +59,8 @@ export const works: Work[] = [
   { slug: "lets-make-it-flame-free", image: "/works/lets-make-it-flame-free.jpg", title: "Let’s Make It Flame Free", medium: "Oil on canvas", size: "2 × 3 in" },
   { slug: "mrt-after-chanel", image: "/works/mrt-after-chanel.jpg", title: "MRT After Chanel", medium: "Oil on canvas", size: "2 × 3 in" },
   { slug: "the-boy-in-his-own-sanctuary", image: "/works/the-boy-in-his-own-sanctuary.jpg", title: "The Boy in His Own Sanctuary", medium: "Oil on canvas", size: "2 × 3 in" },
-  { slug: "the-happy-gardeners", image: "/works/the-happy-gardeners.jpg", title: "The Happy Gardeners" },
-  { slug: "sanctuary-on-the-rocks", image: "/works/sanctuary-on-the-rocks.jpg", title: "Sanctuary on the Rocks" },
+  { slug: "the-happy-gardeners", image: "/works/the-happy-gardeners.jpg", title: "The Happy Gardeners", medium: "Oil on canvas", size: "18 × 18 in" },
+  { slug: "sanctuary-on-the-rocks", image: "/works/sanctuary-on-the-rocks.jpg", title: "Sanctuary on the Rocks", medium: "Oil on canvas", size: "18 × 24 in" },
 ];
 
 /** Behind-the-scenes studio photos (files in /public/process). */
