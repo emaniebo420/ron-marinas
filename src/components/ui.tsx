@@ -150,7 +150,7 @@ export function PageBand({ title, kicker, image }: { title: string; kicker?: str
         {kicker ? (
           <p className="m-0 mb-4 text-xs uppercase tracking-[.3em] [text-indent:.3em]">{kicker}</p>
         ) : null}
-        <h1 className="m-0 font-display text-[clamp(52px,10vw,112px)] font-normal leading-[.95] tracking-tight">{title}</h1>
+        <h1 className="m-0 font-display text-[clamp(46px,8.8vw,98px)] font-normal leading-[.95] tracking-tight">{title}</h1>
       </div>
     </TealBand>
   );
