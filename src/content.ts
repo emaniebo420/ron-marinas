@@ -114,3 +114,9 @@ export const exhibitions: Exhibition[] = [
 /** Small (640px) WebP copy of a work's image, used in grids so pages load fast; the full file is used on the piece page. */
 export const thumbOf = (image: string, large = false): string =>
   image.replace(/^\/works\/([^/]+)\.(jpg|webp)$/, large ? "/works/thumbs/lg/$1.webp" : "/works/thumbs/$1.webp");
+
+/** Pull quote on the About page, between the bio and the exhibitions. */
+export const aboutQuote = {
+  text: "Who decided couture belongs only on the runway? I dress my subjects in extravagance against the backdrop of ordinary life, because fashion has no class, gender, or invitation list. After all, darling, even the everyday deserves a little drama.",
+  by: "Ron M.",
+};

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Container, PageBand, PinkBand, SectionHeading, usePageTitle } from "../components/ui";
-import { artist, exhibitions } from "../content";
+import { artist, exhibitions, aboutQuote } from "../content";
 
 const years = Array.from(new Set(exhibitions.map((show) => show.year)));
 
@@ -35,7 +35,16 @@ export default function About() {
           </div>
         </Container>
 
-        <Container className="pb-20 md:pb-28">
+        <section className="bg-white px-6 py-20 md:py-28">
+          <figure className="m-0 mx-auto max-w-3xl text-center">
+            <blockquote className="m-0 text-[clamp(23px,2.9vw,34px)] leading-snug" style={{ fontFamily: "var(--font-display)" }}>
+              “{aboutQuote.text}”
+            </blockquote>
+            <figcaption className="mt-6 text-xs font-medium uppercase tracking-[.3em] text-muted">— {aboutQuote.by}</figcaption>
+          </figure>
+        </section>
+
+        <Container className="pb-20 pt-10 md:pb-28 md:pt-16">
           <SectionHeading title="Exhibitions" note="Selected" />
           {years.map((year) => (
             <section key={year} className="grid grid-cols-1 gap-x-10 border-b border-rule py-6 sm:grid-cols-[110px_1fr] sm:py-8">
