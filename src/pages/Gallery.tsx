@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Container, PageBand, PinkBand, SectionHeading, Slot, usePageTitle } from "../components/ui";
+import { Container, PageBand, PinkBand, Reveal, SectionHeading, Slot, usePageTitle } from "../components/ui";
 import { artist, processPhotos, works, thumbOf } from "../content";
 
 const PLACEHOLDER_WORK_COUNT = 6;
@@ -18,7 +18,7 @@ export default function Gallery() {
             </span>
           </div>
 
-          <div className="grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-7 sm:gap-y-12 lg:grid-cols-3">
+          <Reveal className="grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-7 sm:gap-y-12 lg:grid-cols-3">
             {works.length > 0 ? (
               (
                 works.map((work) => (
@@ -65,7 +65,7 @@ export default function Gallery() {
                 );
               })
             )}
-          </div>
+          </Reveal>
         </Container>
 
         <Container className="pb-20 sm:pb-28">

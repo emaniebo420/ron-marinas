@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Container, PageBand, PinkBand, SectionHeading, usePageTitle } from "../components/ui";
+import { Container, PageBand, PinkBand, SectionHeading, usePageTitle, Reveal } from "../components/ui";
 import { artist, exhibitions } from "../content";
 
 const years = Array.from(new Set(exhibitions.map((show) => show.year)));
@@ -36,6 +36,7 @@ export default function About() {
         </Container>
 
         <Container className="pb-20 md:pb-28">
+          <Reveal>
           <SectionHeading title="Exhibitions" note="Selected" />
           {years.map((year) => (
             <section key={year} className="grid grid-cols-1 gap-x-10 border-b border-rule py-6 sm:grid-cols-[110px_1fr] sm:py-8">
@@ -54,6 +55,7 @@ export default function About() {
               </ul>
             </section>
           ))}
+          </Reveal>
         </Container>
       </main>
 

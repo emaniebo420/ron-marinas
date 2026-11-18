@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { PinkBand, usePageTitle } from "../components/ui";
+import { PinkBand, Reveal, usePageTitle } from "../components/ui";
 import { artist, thumbOf, works } from "../content";
 import { selectedRows, phoneColumns, heroAlt, heroImage, heroPhoneImage, homeQuote } from "../home";
 
@@ -50,6 +50,7 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-[1240px] px-5 py-16 sm:px-10 sm:py-24">
+        <Reveal>
         <p className="m-0 mb-3 text-center text-xs uppercase tracking-[.3em] text-[#5e5a53]">Selected works</p>
         <h2 className="m-0 mb-12 text-center text-[clamp(34px,5vw,60px)] font-normal leading-none text-[#45b7c6]" style={{ fontFamily: "var(--font-display)" }}>
           Recent paintings
@@ -112,6 +113,7 @@ export default function Home() {
             View full gallery
           </Link>
         </div>
+              </Reveal>
       </section>
 
       <section className="bg-white px-6 py-20 md:py-28">
