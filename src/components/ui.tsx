@@ -296,8 +296,10 @@ export function WorkImg({
     preloaded.current = true;
     new Image().src = wmOf(work);
   };
-  const swap = () => {
+  /** Swaps the element's src right now (not on the next React render) so the browser reads the watermarked URL. */
+  const swap = (el?: HTMLImageElement) => {
     preload();
+    if (el) el.src = wmOf(work);
     setSwapped(true);
     window.clearTimeout(revertTimer.current);
     // keep the watermarked copy long enough for the save/open action to finish, then restore
@@ -323,14 +325,24 @@ export function WorkImg({
       onPointerEnter={preload}
       onMouseDown={(e) => {
         // swap on the right-button press, before the context menu opens and reads the image URL
-        if (e.button === 2) swap();
+        if (e.button === 2) swap(e.currentTarget);
       }}
-      onContextMenu={swap}
-      onDragStart={swap}
-      onTouchStart={() => {
+      onContextMenu={(e) => swap(e.currentTarget)}
+      onDragStart={(e) => {
+        swap(e.currentTarget);
+        // dragging into another app or the desktop saves whatever URL the drag carries
+        const url = new URL(wmOf(work), window.location.href).href;
+        const name = work.split("/").pop() ?? "artwork.jpg";
+        const mime = name.endsWith(".webp") ? "image/webp" : "image/jpeg";
+        e.dataTransfer.setData("text/uri-list", url);
+        e.dataTransfer.setData("text/plain", url);
+        e.dataTransfer.setData("DownloadURL", `${mime}:${name}:${url}`);
+      }}
+      onTouchStart={(e) => {
         preload();
         cancelPress();
-        pressTimer.current = window.setTimeout(swap, 120);
+        const el = e.currentTarget;
+        pressTimer.current = window.setTimeout(() => swap(el), 120);
       }}
       onTouchEnd={cancelPress}
       onTouchMove={cancelPress}
