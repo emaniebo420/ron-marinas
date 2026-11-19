@@ -47,7 +47,7 @@ export const works: Work[] = [
   { slug: "jeepney-couture-iii", image: "/works/jeepney-couture-iii.jpg", title: "Jeepney Couture III", medium: "Oil on canvas", size: "18 × 12 in" },
   { slug: "a-happy-flower", image: "/works/a-happy-flower.jpg", title: "A Happy Flower", medium: "Oil on canvas", size: "18 × 24 in" },
   { slug: "the-pearls-are-out", image: "/works/the-pearls-are-out.jpg", title: "The Pearls are Out", medium: "Oil on canvas", size: "14 × 16 in" },
-  { slug: "i-built-my-own-eden", image: "/works/i-built-my-own-eden.jpg", title: "I Built my Own Eden", medium: "Oil on canvas", size: "26 × 26 in" },
+  { slug: "i-built-my-own-eden", image: "/works/i-built-my-own-eden.webp", title: "I Built my Own Eden", medium: "Oil on canvas", size: "26 × 26 in" },
   { slug: "sampaguita-girl", image: "/works/sampaguita-girl.jpg", title: "Sampaguita Girl", medium: "Oil on canvas", size: "2 × 3 ft" },
   { slug: "my-accordion-player", image: "/works/my-accordion-player.jpg", title: "My Accordion Player", medium: "Oil on canvas", size: "2 × 3 ft" },
   { slug: "lying-red-boy", image: "/works/lying-red-boy.jpg", title: "Lying Red Boy", medium: "Oil on canvas", size: "2 × 3 ft" },
