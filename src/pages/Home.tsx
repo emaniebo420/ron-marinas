@@ -55,6 +55,7 @@ export default function Home() {
         <h2 className="m-0 mb-12 text-center text-[clamp(34px,5vw,60px)] font-normal leading-none text-[#45b7c6]" style={{ fontFamily: "var(--font-display)" }}>
           Recent paintings
         </h2>
+        </Reveal>
         <div className="grid grid-cols-2 items-start gap-x-3 md:hidden">
           {phoneColumns.map((column, c) => (
             <div key={c} className="flex flex-col gap-5">
@@ -63,14 +64,14 @@ export default function Home() {
                 const ratio = selectedRows.flat().find((x) => x.slug === slug)?.ratio;
                 if (!work?.image || !ratio) return null;
                 return (
-                  <figure key={slug} className="m-0">
+                  <Reveal as="figure" key={slug} className="m-0">
                     <Link to={`/gallery/${slug}`} className="block overflow-hidden bg-[#e4e0d8] no-underline" style={{ aspectRatio: String(ratio) }}>
                       <img src={thumbOf(work.image)} alt={work.alt ?? work.title} loading="lazy" decoding="async" className="block h-full w-full object-cover" />
                     </Link>
                     <figcaption className="mt-2 text-[15px] leading-tight" style={{ fontFamily: "var(--font-display)" }}>
                       {work.title}
                     </figcaption>
-                  </figure>
+                  </Reveal>
                 );
               })}
             </div>
@@ -79,11 +80,11 @@ export default function Home() {
         <div className="hidden flex-col gap-20 md:flex">
           {selectedRows.map((row, r) => (
             <div key={r} className="flex flex-row gap-10">
-              {row.map(({ slug, ratio }) => {
+              {row.map(({ slug, ratio }, i) => {
                 const work = works.find((w) => w.slug === slug);
                 if (!work?.image) return null;
                 return (
-                  <figure key={slug} className="group m-0 min-w-0 md:[flex:var(--r)_1_0%]" style={{ "--r": ratio } as React.CSSProperties}>
+                  <Reveal as="figure" key={slug} delay={i * 150} className="group m-0 min-w-0 md:[flex:var(--r)_1_0%]" style={{ "--r": ratio } as React.CSSProperties}>
                     <Link to={`/gallery/${slug}`} className="block overflow-hidden bg-[#e4e0d8] no-underline" style={{ aspectRatio: String(ratio) }}>
                       <img
                         src={thumbOf(work.image, true)}
@@ -99,20 +100,19 @@ export default function Home() {
                       </span>
                       {work.medium && <span className="mt-1 block text-xs uppercase tracking-[.16em] text-[#5e5a53]">{work.medium}</span>}
                     </figcaption>
-                  </figure>
+                  </Reveal>
                 );
               })}
             </div>
           ))}
         </div>
-        <div className="mt-10 text-center">
+        <Reveal className="mt-10 text-center">
           <Link
             to="/gallery"
             className="inline-flex min-h-12 items-center rounded-full border border-[#1b1a18] px-8 text-sm uppercase tracking-[.18em] text-[#1b1a18] no-underline"
           >
             View full gallery
           </Link>
-        </div>
         </Reveal>
       </section>
 
