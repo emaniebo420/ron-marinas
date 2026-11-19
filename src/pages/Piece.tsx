@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { Container, PageBand, Slot, WorkImg, usePageTitle } from "../components/ui";
-import { artist, works } from "../content";
+import { artist, wmOf, works } from "../content";
 
 export default function Piece() {
   const { slug } = useParams();
@@ -45,7 +45,7 @@ export default function Piece() {
           </Link>
           <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-[1.2fr_1fr] md:gap-14">
             {work.image ? (
-              <WorkImg overlay work={work.image} src={work.image} alt={work.alt ?? work.title} className={`block w-full ${work.image.endsWith(".webp") ? "" : "bg-slot"}`} />
+              <WorkImg src={work.image} wmSrc={wmOf(work.image)} alt={work.alt ?? work.title} className={`block w-full ${work.image.endsWith(".webp") ? "" : "bg-slot"}`} />
             ) : (
               <Slot label={`[PHOTO: ${work.title}]`} className="aspect-[4/5] w-full" />
             )}

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Container, PageBand, PinkBand, SectionHeading, Slot, WorkImg, usePageTitle } from "../components/ui";
-import { artist, processPhotos, works, thumbOf } from "../content";
+import { artist, processPhotos, works, thumbOf, wmThumbOf } from "../content";
 
 const PLACEHOLDER_WORK_COUNT = 6;
 export default function Gallery() {
@@ -26,8 +26,8 @@ export default function Gallery() {
                     <Link to={`/gallery/${work.slug}`} className="block no-underline">
                       {work.image ? (
                         <WorkImg
-                          work={work.image}
                           src={thumbOf(work.image)}
+                          wmSrc={wmThumbOf(work.image)}
                           alt={work.alt ?? work.title}
                           loading="lazy"
                           className={`aspect-[4/5] w-full ${work.image.endsWith(".webp") ? "object-contain p-2" : "bg-slot object-cover"}`}

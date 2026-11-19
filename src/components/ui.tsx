@@ -1,6 +1,6 @@
 import { createElement, useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { artist, wmOf } from "../content";
+import { artist } from "../content";
 
 export function usePageTitle(title: string) {
   useEffect(() => {
@@ -266,126 +266,51 @@ export function Reveal({
 }
 
 /**
- * Artwork image. Looks normal on the page; when someone tries to save it (right-click, long-press, drag)
- * the src is swapped to the watermarked copy so the saved file carries the watermark.
+ * Artwork image. An invisible watermarked copy (opacity 0, same size and position) is laid over the visible image,
+ * so anything that grabs "the image under the pointer" (drag, right-click, long-press, save) gets the watermarked
+ * file, while visitors see the clean painting. It loads only after the visible image has loaded.
  * Screenshots and browser dev tools are not covered.
  */
 export function WorkImg({
-  work,
   src,
+  wmSrc,
   alt,
   className,
   loading,
-  overlay = false,
 }: {
-  /**
-   * Full-size pages: lay an invisible watermarked copy exactly over the visible image, so anything that grabs
-   * "the image under the pointer" (drag, right-click, long-press) gets the watermarked file. No timing involved.
-   */
-  overlay?: boolean;
-  /** Full-size path of the work, e.g. "/works/joseph.webp" (used to find the watermarked copy). */
-  work: string;
   src: string;
+  /** Watermarked copy with the same pixel size as `src`. */
+  wmSrc: string;
   alt: string;
   className?: string;
   loading?: "lazy" | "eager";
 }) {
-  const [swapped, setSwapped] = useState(false);
-  const pressTimer = useRef<number | undefined>(undefined);
-  const revertTimer = useRef<number | undefined>(undefined);
-
-  const preloaded = useRef(false);
   const visibleRef = useRef<HTMLImageElement>(null);
   const [loaded, setLoaded] = useState(false);
 
-  /** Fetch the watermarked copy ahead of time so it is already cached when the swap happens. */
-  const preload = () => {
-    if (preloaded.current) return;
-    preloaded.current = true;
-    new Image().src = wmOf(work);
-  };
-  /** Swaps the element's src right now (not on the next React render) so the browser reads the watermarked URL. */
-  const swap = (el?: HTMLImageElement) => {
-    preload();
-    if (el) el.src = wmOf(work);
-    setSwapped(true);
-    window.clearTimeout(revertTimer.current);
-    // keep the watermarked copy long enough for the save/open action to finish, then restore
-    revertTimer.current = window.setTimeout(() => setSwapped(false), 60000);
-  };
-  const cancelPress = () => window.clearTimeout(pressTimer.current);
-
-  useEffect(
-    () => () => {
-      window.clearTimeout(pressTimer.current);
-      window.clearTimeout(revertTimer.current);
-    },
-    [],
-  );
-
-  if (overlay) {
-    return (
-      <span className="relative block">
-        <img
-          ref={visibleRef}
-          src={src}
-          alt={alt}
-          loading={loading}
-          decoding="async"
-          className={className}
-          onLoad={() => setLoaded(true)}
-        />
-        {loaded ? (
-          <img
-            src={wmOf(work)}
-            alt=""
-            aria-hidden="true"
-            decoding="async"
-            className="absolute inset-0 h-full w-full opacity-0"
-            onDragStart={(e) => {
-              // the overlay is invisible, so show the visible image as the drag ghost
-              const vis = visibleRef.current;
-              if (vis) e.dataTransfer.setDragImage(vis, e.nativeEvent.offsetX, e.nativeEvent.offsetY);
-            }}
-          />
-        ) : null}
-      </span>
-    );
-  }
+  useEffect(() => {
+    // image may already be complete (cached) before React attaches onLoad
+    if (visibleRef.current?.complete) setLoaded(true);
+  }, []);
 
   return (
-    <img
-      ref={visibleRef}
-      src={swapped ? wmOf(work) : src}
-      alt={alt}
-      loading={loading}
-      decoding="async"
-      className={className}
-      onPointerEnter={preload}
-      onMouseDown={(e) => {
-        // swap on the right-button press, before the context menu opens and reads the image URL
-        if (e.button === 2) swap(e.currentTarget);
-      }}
-      onContextMenu={(e) => swap(e.currentTarget)}
-      onDragStart={(e) => {
-        swap(e.currentTarget);
-        // dragging into another app or the desktop saves whatever URL the drag carries
-        const url = new URL(wmOf(work), window.location.href).href;
-        const name = work.split("/").pop() ?? "artwork.jpg";
-        const mime = name.endsWith(".webp") ? "image/webp" : "image/jpeg";
-        e.dataTransfer.setData("text/uri-list", url);
-        e.dataTransfer.setData("text/plain", url);
-        e.dataTransfer.setData("DownloadURL", `${mime}:${name}:${url}`);
-      }}
-      onTouchStart={(e) => {
-        preload();
-        cancelPress();
-        const el = e.currentTarget;
-        pressTimer.current = window.setTimeout(() => swap(el), 120);
-      }}
-      onTouchEnd={cancelPress}
-      onTouchMove={cancelPress}
-      onTouchCancel={cancelPress}
-    />
+    <span className="relative block h-full w-full">
+      <img ref={visibleRef} src={src} alt={alt} loading={loading} decoding="async" className={className} onLoad={() => setLoaded(true)} />
+      {loaded ? (
+        <img
+          src={wmSrc}
+          alt=""
+          aria-hidden="true"
+          decoding="async"
+          className={className}
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", aspectRatio: "auto", opacity: 0 }}
+          onDragStart={(e) => {
+            // the overlay is invisible, so show the visible image as the drag ghost
+            const vis = visibleRef.current;
+            if (vis) e.dataTransfer.setDragImage(vis, e.nativeEvent.offsetX, e.nativeEvent.offsetY);
+          }}
+        />
+      ) : null}
+    </span>
   );
 }

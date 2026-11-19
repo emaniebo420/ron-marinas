@@ -119,8 +119,10 @@ export const exhibitions: Exhibition[] = [
 export const thumbOf = (image: string, large = false): string =>
   image.replace(/^\/works\/([^/]+)\.(jpg|webp)$/, large ? "/works/thumbs/lg/$1.webp" : "/works/thumbs/$1.webp");
 
-/** Watermarked copy of a work, swapped in only when a visitor tries to save the image (see WorkImg). */
+/** Watermarked copy of a work (same size as the visible image), laid invisibly over it by WorkImg. */
 export const wmOf = (image: string): string => image.replace(/^\/works\//, "/works/wm/");
+/** Watermarked copy of a thumbnail, matching thumbOf(image, large). */
+export const wmThumbOf = (image: string, large = false): string => wmOf(thumbOf(image, large));
 
 /** Pull quote on the About page, between the bio and the exhibitions. */
 export const aboutQuote = {

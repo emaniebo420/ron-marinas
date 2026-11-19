@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Builds public/works/wm/<file>: watermarked copies (max 1400px wide) of every artwork in public/works.
+"""Builds public/works/wm/: watermarked copies of every artwork in public/works (full size capped at 1400px,
+plus one per existing thumbnail in thumbs/ and thumbs/lg/, same pixel size).
 
 The site swaps these in only when someone tries to save an image (right-click, long-press, drag),
 so visitors never see the watermark while browsing. Re-run after adding or replacing an artwork:
@@ -61,23 +62,38 @@ def tile_layer(size: tuple[int, int]) -> Image.Image:
     return layer
 
 
+def mark(im: Image.Image) -> Image.Image:
+    layer = tile_layer(im.size)
+    # keep transparent cutout backgrounds clean: only mark where the painting has pixels
+    a = Image.composite(layer.getchannel("A"), Image.new("L", im.size, 0), im.getchannel("A"))
+    layer.putalpha(a)
+    return Image.alpha_composite(im, layer)
+
+
+def save(im: Image.Image, dest: Path, jpg: bool, quality: int) -> None:
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    if jpg:
+        im.convert("RGB").save(dest, quality=quality, optimize=True, progressive=True)
+    else:
+        im.save(dest, quality=quality, method=6)
+
+
 def main() -> None:
-    OUT.mkdir(exist_ok=True)
     files = sorted(p for p in SRC.iterdir() if p.suffix.lower() in {".jpg", ".webp"})
     for path in files:
         im = Image.open(path).convert("RGBA")
         if im.width > MAX_WIDTH:
             im = im.resize((MAX_WIDTH, round(im.height * MAX_WIDTH / im.width)), Image.LANCZOS)
-        layer = tile_layer(im.size)
-        # keep transparent cutout backgrounds clean: only mark where the painting has pixels
-        a = Image.composite(layer.getchannel("A"), Image.new("L", im.size, 0), im.getchannel("A"))
-        layer.putalpha(a)
-        out = Image.alpha_composite(im, layer)
-        if path.suffix.lower() == ".jpg":
-            out.convert("RGB").save(OUT / path.name, quality=80, optimize=True, progressive=True)
-        else:
-            out.save(OUT / path.name, quality=80, method=6)
+        save(mark(im), OUT / path.name, path.suffix.lower() == ".jpg", 80)
         print(f"{path.name}: {(OUT / path.name).stat().st_size // 1024} KB")
+        # watermarked copies matching each existing thumbnail's exact size (used by the grids)
+        for sub in ("thumbs", "thumbs/lg"):
+            thumb = SRC / sub / f"{path.stem}.webp"
+            if not thumb.exists():
+                continue
+            size = Image.open(thumb).size
+            small = Image.open(path).convert("RGBA").resize(size, Image.LANCZOS)
+            save(mark(small), OUT / sub / thumb.name, False, 72)
 
 
 if __name__ == "__main__":
