@@ -288,11 +288,20 @@ export function WorkImg({
   const pressTimer = useRef<number | undefined>(undefined);
   const revertTimer = useRef<number | undefined>(undefined);
 
+  const preloaded = useRef(false);
+
+  /** Fetch the watermarked copy ahead of time so it is already cached when the swap happens. */
+  const preload = () => {
+    if (preloaded.current) return;
+    preloaded.current = true;
+    new Image().src = wmOf(work);
+  };
   const swap = () => {
+    preload();
     setSwapped(true);
     window.clearTimeout(revertTimer.current);
     // keep the watermarked copy long enough for the save/open action to finish, then restore
-    revertTimer.current = window.setTimeout(() => setSwapped(false), 20000);
+    revertTimer.current = window.setTimeout(() => setSwapped(false), 60000);
   };
   const cancelPress = () => window.clearTimeout(pressTimer.current);
 
@@ -311,11 +320,17 @@ export function WorkImg({
       loading={loading}
       decoding="async"
       className={className}
+      onPointerEnter={preload}
+      onMouseDown={(e) => {
+        // swap on the right-button press, before the context menu opens and reads the image URL
+        if (e.button === 2) swap();
+      }}
       onContextMenu={swap}
       onDragStart={swap}
       onTouchStart={() => {
+        preload();
         cancelPress();
-        pressTimer.current = window.setTimeout(swap, 350);
+        pressTimer.current = window.setTimeout(swap, 120);
       }}
       onTouchEnd={cancelPress}
       onTouchMove={cancelPress}
