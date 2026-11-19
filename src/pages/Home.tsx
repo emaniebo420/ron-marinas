@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { PinkBand, usePageTitle } from "../components/ui";
+import { PinkBand, Reveal, usePageTitle } from "../components/ui";
 import { artist, thumbOf, works } from "../content";
 import { selectedRows, phoneColumns, heroAlt, heroImage, heroPhoneImage, homeQuote } from "../home";
 
@@ -50,6 +50,7 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-[1240px] px-5 py-16 sm:px-10 sm:py-24">
+        <Reveal>
         <p className="m-0 mb-3 text-center text-xs uppercase tracking-[.3em] text-[#5e5a53]">Selected works</p>
         <h2 className="m-0 mb-12 text-center text-[clamp(34px,5vw,60px)] font-normal leading-none text-[#45b7c6]" style={{ fontFamily: "var(--font-display)" }}>
           Recent paintings
@@ -112,21 +113,22 @@ export default function Home() {
             View full gallery
           </Link>
         </div>
+        </Reveal>
       </section>
 
       <section className="bg-white px-6 py-20 md:py-28">
-        <figure className="mx-auto m-0 max-w-3xl text-center">
+        <Reveal as="figure" className="mx-auto m-0 max-w-3xl text-center">
           <blockquote className="m-0 text-[clamp(26px,3.6vw,42px)] leading-snug" style={{ fontFamily: "var(--font-display)" }}>
             “{homeQuote.text}”
           </blockquote>
           <figcaption className="mt-6 text-xs font-medium uppercase tracking-[.3em] text-[#5e5a53]">
             — {homeQuote.by}
           </figcaption>
-        </figure>
+        </Reveal>
       </section>
 
       <PinkBand image="/cta-garden.jpg">
-        <div className="flex flex-col items-center gap-y-7">
+        <Reveal className="flex flex-col items-center gap-y-7">
           <h2 className="m-0 text-[clamp(25px,3.5vw,45px)] font-normal leading-none [text-shadow:0_2px_16px_rgba(0,30,30,.45)]" style={{ fontFamily: "var(--font-display)" }}>
             Interested in a piece?
           </h2>
@@ -136,7 +138,7 @@ export default function Home() {
           >
             Get in touch
           </Link>
-        </div>
+        </Reveal>
       </PinkBand>
     </main>
   );

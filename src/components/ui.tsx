@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from "react";
+import { createElement, useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { artist } from "../content";
 
@@ -213,5 +213,54 @@ export function InstagramIcon({ className = "" }: { className?: string }) {
       <circle cx="12" cy="12" r="4.2" />
       <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none" />
     </svg>
+  );
+}
+
+
+/** Fades and lifts a whole block into place the first time it scrolls into view (same feel as isabelmonserrat.com). */
+export function Reveal({
+  as = "div",
+  children,
+  className = "",
+  delay = 0,
+  style,
+}: {
+  as?: "div" | "figure" | "section" | "li";
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+  style?: CSSProperties;
+}) {
+  const ref = useRef<HTMLElement>(null);
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setShown(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setShown(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return createElement(
+    as,
+    {
+      ref,
+      className: `reveal ${shown ? "is-in" : ""} ${className}`,
+      style: { ...style, transitionDelay: shown ? `${delay}ms` : undefined },
+    },
+    children,
   );
 }
