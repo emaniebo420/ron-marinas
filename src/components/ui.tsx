@@ -276,7 +276,13 @@ export function WorkImg({
   alt,
   className,
   loading,
+  overlay = false,
 }: {
+  /**
+   * Full-size pages: lay an invisible watermarked copy exactly over the visible image, so anything that grabs
+   * "the image under the pointer" (drag, right-click, long-press) gets the watermarked file. No timing involved.
+   */
+  overlay?: boolean;
   /** Full-size path of the work, e.g. "/works/joseph.webp" (used to find the watermarked copy). */
   work: string;
   src: string;
@@ -289,6 +295,8 @@ export function WorkImg({
   const revertTimer = useRef<number | undefined>(undefined);
 
   const preloaded = useRef(false);
+  const visibleRef = useRef<HTMLImageElement>(null);
+  const [loaded, setLoaded] = useState(false);
 
   /** Fetch the watermarked copy ahead of time so it is already cached when the swap happens. */
   const preload = () => {
@@ -315,8 +323,39 @@ export function WorkImg({
     [],
   );
 
+  if (overlay) {
+    return (
+      <span className="relative block">
+        <img
+          ref={visibleRef}
+          src={src}
+          alt={alt}
+          loading={loading}
+          decoding="async"
+          className={className}
+          onLoad={() => setLoaded(true)}
+        />
+        {loaded ? (
+          <img
+            src={wmOf(work)}
+            alt=""
+            aria-hidden="true"
+            decoding="async"
+            className="absolute inset-0 h-full w-full opacity-0"
+            onDragStart={(e) => {
+              // the overlay is invisible, so show the visible image as the drag ghost
+              const vis = visibleRef.current;
+              if (vis) e.dataTransfer.setDragImage(vis, e.nativeEvent.offsetX, e.nativeEvent.offsetY);
+            }}
+          />
+        ) : null}
+      </span>
+    );
+  }
+
   return (
     <img
+      ref={visibleRef}
       src={swapped ? wmOf(work) : src}
       alt={alt}
       loading={loading}
