@@ -32,7 +32,7 @@ export default function Home() {
               className="block h-auto w-[min(88%,340px)] [filter:drop-shadow(0_1px_6px_rgba(0,60,60,.45))] md:w-[min(92%,640px)]"
             />
           </h1>
-          <p className="mb-0 mt-4 text-[clamp(10px,2.9vw,12px)] font-medium uppercase tracking-[.34em] [text-indent:.34em] [text-shadow:0_1px_8px_rgba(0,70,70,.45)] md:mt-5 md:text-[clamp(11px,1.05vw,15px)]">
+          <p className="mb-0 mt-4 text-[clamp(7px,2.03vw,8.4px)] font-medium uppercase tracking-[.34em] [text-indent:.34em] [text-shadow:0_1px_8px_rgba(0,70,70,.45)] md:mt-5 md:text-[clamp(7.7px,.735vw,10.5px)]">
             {artist.tagline}
           </p>
           <nav aria-label="Primary" className="mt-2 flex items-center justify-center gap-x-0 sm:gap-x-3 md:mt-[1.4vw]">

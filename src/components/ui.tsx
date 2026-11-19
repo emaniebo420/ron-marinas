@@ -148,7 +148,7 @@ export function PageBand({ title, kicker, image }: { title: string; kicker?: str
         }`}
       >
         {kicker ? (
-          <p className="m-0 mb-4 text-xs uppercase tracking-[.3em] [text-indent:.3em]">{kicker}</p>
+          <p className="m-0 mb-3 text-[8.4px] uppercase tracking-[.3em] [text-indent:.3em]">{kicker}</p>
         ) : null}
         <h1 className="m-0 font-display text-[clamp(38px,7.2vw,80px)] font-normal leading-[.95] tracking-tight">{title}</h1>
       </div>
