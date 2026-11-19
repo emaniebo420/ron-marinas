@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { PinkBand, Reveal, usePageTitle } from "../components/ui";
+import { PinkBand, Reveal, WorkImg, usePageTitle } from "../components/ui";
 import { artist, thumbOf, works } from "../content";
 import { selectedRows, phoneColumns, heroAlt, heroImage, heroPhoneImage, homeQuote } from "../home";
 
@@ -66,7 +66,7 @@ export default function Home() {
                 return (
                   <Reveal as="figure" key={slug} className="m-0">
                     <Link to={`/gallery/${slug}`} className="block overflow-hidden bg-[#e4e0d8] no-underline" style={{ aspectRatio: String(ratio) }}>
-                      <img src={thumbOf(work.image)} alt={work.alt ?? work.title} loading="lazy" decoding="async" className="block h-full w-full object-cover" />
+                      <WorkImg work={work.image} src={thumbOf(work.image)} alt={work.alt ?? work.title} loading="lazy" className="block h-full w-full object-cover" />
                     </Link>
                     <figcaption className="mt-2 text-[15px] leading-tight" style={{ fontFamily: "var(--font-display)" }}>
                       {work.title}
@@ -86,11 +86,11 @@ export default function Home() {
                 return (
                   <Reveal as="figure" key={slug} delay={i * 150} className="group m-0 min-w-0 md:[flex:var(--r)_1_0%]" style={{ "--r": ratio } as React.CSSProperties}>
                     <Link to={`/gallery/${slug}`} className="block overflow-hidden bg-[#e4e0d8] no-underline" style={{ aspectRatio: String(ratio) }}>
-                      <img
+                      <WorkImg
+                        work={work.image}
                         src={thumbOf(work.image, true)}
                         alt={work.alt ?? work.title}
                         loading="lazy"
-                        decoding="async"
                         className="block h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                       />
                     </Link>

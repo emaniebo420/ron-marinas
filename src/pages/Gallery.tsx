@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Container, PageBand, PinkBand, SectionHeading, Slot, usePageTitle } from "../components/ui";
+import { Container, PageBand, PinkBand, SectionHeading, Slot, WorkImg, usePageTitle } from "../components/ui";
 import { artist, processPhotos, works, thumbOf } from "../content";
 
 const PLACEHOLDER_WORK_COUNT = 6;
@@ -25,11 +25,11 @@ export default function Gallery() {
                   <figure key={work.slug} className="m-0 min-w-0">
                     <Link to={`/gallery/${work.slug}`} className="block no-underline">
                       {work.image ? (
-                        <img
+                        <WorkImg
+                          work={work.image}
                           src={thumbOf(work.image)}
                           alt={work.alt ?? work.title}
                           loading="lazy"
-                          decoding="async"
                           className={`aspect-[4/5] w-full ${work.image.endsWith(".webp") ? "object-contain p-2" : "bg-slot object-cover"}`}
                         />
                       ) : (

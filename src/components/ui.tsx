@@ -1,6 +1,6 @@
 import { createElement, useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { artist } from "../content";
+import { artist, wmOf } from "../content";
 
 export function usePageTitle(title: string) {
   useEffect(() => {
@@ -262,5 +262,64 @@ export function Reveal({
       style: { ...style, transitionDelay: shown ? `${delay}ms` : undefined },
     },
     children,
+  );
+}
+
+/**
+ * Artwork image. Looks normal on the page; when someone tries to save it (right-click, long-press, drag)
+ * the src is swapped to the watermarked copy so the saved file carries the watermark.
+ * Screenshots and browser dev tools are not covered.
+ */
+export function WorkImg({
+  work,
+  src,
+  alt,
+  className,
+  loading,
+}: {
+  /** Full-size path of the work, e.g. "/works/joseph.webp" (used to find the watermarked copy). */
+  work: string;
+  src: string;
+  alt: string;
+  className?: string;
+  loading?: "lazy" | "eager";
+}) {
+  const [swapped, setSwapped] = useState(false);
+  const pressTimer = useRef<number | undefined>(undefined);
+  const revertTimer = useRef<number | undefined>(undefined);
+
+  const swap = () => {
+    setSwapped(true);
+    window.clearTimeout(revertTimer.current);
+    // keep the watermarked copy long enough for the save/open action to finish, then restore
+    revertTimer.current = window.setTimeout(() => setSwapped(false), 20000);
+  };
+  const cancelPress = () => window.clearTimeout(pressTimer.current);
+
+  useEffect(
+    () => () => {
+      window.clearTimeout(pressTimer.current);
+      window.clearTimeout(revertTimer.current);
+    },
+    [],
+  );
+
+  return (
+    <img
+      src={swapped ? wmOf(work) : src}
+      alt={alt}
+      loading={loading}
+      decoding="async"
+      className={className}
+      onContextMenu={swap}
+      onDragStart={swap}
+      onTouchStart={() => {
+        cancelPress();
+        pressTimer.current = window.setTimeout(swap, 350);
+      }}
+      onTouchEnd={cancelPress}
+      onTouchMove={cancelPress}
+      onTouchCancel={cancelPress}
+    />
   );
 }
