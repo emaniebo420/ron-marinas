@@ -10,6 +10,8 @@ export interface Work {
   year?: string;
   medium?: string;
   size?: string;
+  /** Short story/meaning shown on the piece page. */
+  description?: string;
   /** Path under /public, e.g. "/works/garden-of-us.webp". Missing = labeled placeholder. */
   image?: string;
   alt?: string;
@@ -45,8 +47,8 @@ export const works: Work[] = [
   { slug: "dinner-at-tiffanys", image: "/works/dinner-at-tiffanys.jpg", title: "Dinner at Tiffany’s", medium: "Oil on canvas", size: "24 × 24 in" },
   { slug: "jeepney-couture-ii", image: "/works/jeepney-couture-ii.jpg", title: "Jeepney Couture II", medium: "Oil on canvas", size: "18 × 12 in" },
   { slug: "jeepney-couture-iii", image: "/works/jeepney-couture-iii.jpg", title: "Jeepney Couture III", medium: "Oil on canvas", size: "18 × 12 in" },
-  { slug: "a-happy-flower", image: "/works/a-happy-flower.jpg", title: "A Happy Flower", medium: "Oil on canvas", size: "18 × 24 in" },
-  { slug: "the-pearls-are-out", image: "/works/the-pearls-are-out.jpg", title: "The Pearls are Out", medium: "Oil on canvas", size: "14 × 16 in" },
+  { slug: "a-happy-flower", image: "/works/a-happy-flower.jpg", title: "A Happy Flower", medium: "Oil on canvas", size: "18 × 24 in", description: "This celebrates the freedom of living happily without being held back by the eyes around us. As the girl tends to her garden, she reminds us to grow beyond judgment and choose the happiness that comes from simply being ourselves." },
+  { slug: "the-pearls-are-out", image: "/works/the-pearls-are-out.jpg", title: "The Pearls are Out", medium: "Oil on canvas", size: "14 × 16 in", description: "This painting depicts a happy little elegant girl uncovering the pearls she buried in her garden, cutting off the supply that gives life to the watchful eyes of the dead flowers. With a sense of joy and playfulness, she takes care of her garden and makes room for new beginnings" },
   { slug: "i-built-my-own-eden", image: "/works/i-built-my-own-eden.webp", title: "I Built my Own Eden", medium: "Oil on canvas", size: "26 × 26 in" },
   { slug: "sampaguita-girl", image: "/works/sampaguita-girl.jpg", title: "Sampaguita Girl", medium: "Oil on canvas", size: "2 × 3 ft" },
   { slug: "my-accordion-player", image: "/works/my-accordion-player.jpg", title: "My Accordion Player", medium: "Oil on canvas", size: "2 × 3 ft" },
@@ -57,11 +59,11 @@ export const works: Work[] = [
   { slug: "lock-your-happiness", image: "/works/lock-your-happiness.jpg", title: "Lock your Happiness", medium: "Oil on canvas", size: "18 × 24 in" },
   { slug: "jeepney-couture", image: "/works/jeepney-couture.jpg", title: "Jeepney Couture", medium: "Oil on canvas", size: "2 × 3 ft" },
   { slug: "im-the-unlit-floating-candle", image: "/works/im-the-unlit-floating-candle.jpg", title: "I’m the Unlit Floating Candle", medium: "Oil on canvas", size: "2 × 3 ft" },
-  { slug: "the-broken-garden-loop", image: "/works/the-broken-garden-loop.jpg", title: "The Broken Garden Loop", medium: "Oil on canvas", size: "2 × 3 ft" },
-  { slug: "lets-make-it-flame-free", image: "/works/lets-make-it-flame-free.jpg", title: "Let’s Make It Flame Free", medium: "Oil on canvas", size: "2 × 3 ft" },
+  { slug: "the-broken-garden-loop", image: "/works/the-broken-garden-loop.jpg", title: "The Broken Garden Loop", medium: "Oil on canvas", size: "2 × 3 ft", description: "This is a reflection on the many emotions we move through as we grow moments of sadness and happiness, endings and beginnings, resilience and renewal. It tells a story of breaking familiar patterns, burying the past, and moving forward, but from the simple decision to choose happiness." },
+  { slug: "lets-make-it-flame-free", image: "/works/lets-make-it-flame-free.jpg", title: "Let’s Make It Flame Free", medium: "Oil on canvas", size: "2 × 3 ft", description: "Let's Make It Flame Free is a cheeky and symbolic celebration of friendship, depicting a group coming together to put out a flame that has caught their flower-like friend. With humor and warmth, the painting turns a small moment of chaos into a playful reminder that good friends will always show up for one another when one of their own needs them." },
   { slug: "mrt-after-chanel", image: "/works/mrt-after-chanel.jpg", title: "MRT After Chanel", medium: "Oil on canvas", size: "2 × 3 ft" },
   { slug: "the-boy-in-his-own-sanctuary", image: "/works/the-boy-in-his-own-sanctuary.jpg", title: "The Boy in His Own Sanctuary", medium: "Oil on canvas", size: "2 × 3 ft" },
-  { slug: "the-happy-gardeners", image: "/works/the-happy-gardeners.jpg", title: "The Happy Gardeners", medium: "Oil on canvas", size: "18 × 18 in" },
+  { slug: "the-happy-gardeners", image: "/works/the-happy-gardeners.jpg", title: "The Happy Gardeners", medium: "Oil on canvas", size: "18 × 18 in", description: "Inspired by a classical painting, this work is reimagined as a playful depiction of a happy couple guarding their garden a symbol of the life they have built together. Small and humorous in spirit, it celebrates the quiet strength of being happy, united, and protective of what matters most." },
   { slug: "sanctuary-on-the-rocks", image: "/works/sanctuary-on-the-rocks.jpg", title: "Sanctuary on the Rocks", medium: "Oil on canvas", size: "18 × 24 in" },
 ];
 

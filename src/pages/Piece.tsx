@@ -60,6 +60,9 @@ export default function Piece() {
                 ))}
               </dl>
               ) : null}
+              {work.description ? (
+                <p className="m-0 mt-6 border-t border-rule pt-5 text-[15px] leading-[1.75] text-fg/85">{work.description}</p>
+              ) : null}
               <Link
                 to={`/contact?work=${encodeURIComponent(work.title)}`}
                 className="mt-8 inline-flex min-h-12 items-center rounded-full bg-fg px-8 text-sm uppercase tracking-[.18em] text-bg no-underline"
