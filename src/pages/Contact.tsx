@@ -126,7 +126,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="min-h-12 rounded-full bg-fg px-8 text-sm font-medium uppercase tracking-[.18em] text-white hover:opacity-90 disabled:opacity-50"
+                  className="min-h-12 rounded-full bg-[#45b7c6] px-8 text-sm font-medium uppercase tracking-[.18em] text-white hover:opacity-90 disabled:opacity-50"
                 >
                   {status === "sending" ? "Sending..." : "Send message"}
                 </button>
