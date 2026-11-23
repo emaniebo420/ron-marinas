@@ -61,7 +61,11 @@ export default function Piece() {
               </dl>
               ) : null}
               {work.description ? (
-                <p className="m-0 mt-6 border-t border-rule pt-5 text-[15px] leading-[1.75] text-fg/85">{work.description}</p>
+                <div className="mt-6 border-t border-rule pt-5 text-[15px] leading-[1.75] text-fg/85">
+                  {work.description.split("\n\n").map((para, i) => (
+                    <p key={i} className={i === 0 ? "m-0" : "m-0 mt-4"}>{para}</p>
+                  ))}
+                </div>
               ) : null}
               <Link
                 to={`/contact?work=${encodeURIComponent(work.title)}`}
