@@ -29,7 +29,7 @@ export const artist = {
     "Ultimately, his work invites viewers to embrace their individuality and remain true to themselves, finding beauty and strength in who they are despite the circumstances that surround them.",
   ],
   portrait: "/artist.jpg",
-  email: "ronmarinasart@gmail.com",
+  email: "ronmarinas.inquiries@gmail.com",
   instagram: "https://instagram.com/imronmarinas",
   instagramHandle: "@imronmarinas",
   /** Opens a direct message to Ron on Instagram. */
