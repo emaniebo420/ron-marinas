@@ -69,7 +69,7 @@ export default function Piece() {
               ) : null}
               <Link
                 to={`/contact?work=${encodeURIComponent(work.title)}`}
-                className="mt-8 inline-flex min-h-12 items-center rounded-full bg-fg px-8 text-sm uppercase tracking-[.18em] text-bg no-underline"
+                className="mt-8 inline-flex min-h-12 items-center rounded-full bg-[#45b7c6] px-8 text-sm font-medium uppercase tracking-[.18em] text-white no-underline hover:opacity-90"
               >
                 Inquire about this piece
               </Link>
