@@ -277,7 +277,10 @@ export function WorkImg({
   alt,
   className,
   loading,
+  fitTall = false,
 }: {
+  /** Piece page: very tall artworks keep their proportions but are capped to the screen height. */
+  fitTall?: boolean;
   src: string;
   /** Watermarked copy with the same pixel size as `src`. */
   wmSrc: string;
@@ -287,15 +290,32 @@ export function WorkImg({
 }) {
   const visibleRef = useRef<HTMLImageElement>(null);
   const [loaded, setLoaded] = useState(false);
+  const [tall, setTall] = useState(false);
+
+  const onLoad = () => {
+    const el = visibleRef.current;
+    if (fitTall && el && el.naturalWidth / el.naturalHeight < 0.55) setTall(true);
+    setLoaded(true);
+  };
 
   useEffect(() => {
     // image may already be complete (cached) before React attaches onLoad
-    if (visibleRef.current?.complete) setLoaded(true);
+    if (visibleRef.current?.complete) onLoad();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <span className="relative block h-full w-full">
-      <img ref={visibleRef} src={src} alt={alt} loading={loading} decoding="async" className={className} onLoad={() => setLoaded(true)} />
+    <span className={tall ? "relative mx-auto block w-fit max-w-full" : "relative block h-full w-full"}>
+      <img
+        ref={visibleRef}
+        src={src}
+        alt={alt}
+        loading={loading}
+        decoding="async"
+        className={className}
+        style={tall ? { width: "auto", maxWidth: "100%", maxHeight: "82vh" } : undefined}
+        onLoad={onLoad}
+      />
       {loaded ? (
         <img
           src={wmSrc}

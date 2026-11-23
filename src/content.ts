@@ -65,6 +65,12 @@ export const works: Work[] = [
   { slug: "the-boy-in-his-own-sanctuary", image: "/works/the-boy-in-his-own-sanctuary.jpg", title: "The Boy in His Own Sanctuary", medium: "Oil on canvas", size: "2 × 3 ft" },
   { slug: "the-happy-gardeners", image: "/works/the-happy-gardeners.jpg", title: "The Happy Gardeners", medium: "Oil on canvas", size: "18 × 18 in", description: "Inspired by a classical painting, this work is reimagined as a playful depiction of a happy couple guarding their garden a symbol of the life they have built together. Small and humorous in spirit, it celebrates the quiet strength of being happy, united, and protective of what matters most." },
   { slug: "sanctuary-on-the-rocks", image: "/works/sanctuary-on-the-rocks.jpg", title: "Sanctuary on the Rocks", medium: "Oil on canvas", size: "18 × 24 in" },
+  { slug: "peaceful-exhale-2", image: "/works/peaceful-exhale-2.webp", title: "Peaceful Exhale", medium: "Oil on canvas", size: "9 × 9 in" },
+  { slug: "the-growing-flower", image: "/works/the-growing-flower.webp", title: "The Growing Flower I–IV", medium: "Oil on canvas", size: "15 × 15 cm" },
+  { slug: "body-of-tranquility", image: "/works/body-of-tranquility.webp", title: "Body of Tranquility", medium: "Oil on canvas" },
+  { slug: "blithe-at-last", image: "/works/blithe-at-last.webp", title: "Blithe at Last", medium: "Oil on canvas" },
+  { slug: "the-birkin-exit-1", image: "/works/the-birkin-exit-1.webp", title: "The Birkin Exit 1", medium: "Oil on canvas", size: "7 × 21 in" },
+  { slug: "the-birkin-exit-2", image: "/works/the-birkin-exit-2.webp", title: "The Birkin Exit 2", medium: "Oil on canvas", size: "7 × 21 in" },
 ];
 
 /** Behind-the-scenes studio photos (files in /public/process). */
