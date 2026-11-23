@@ -1,6 +1,6 @@
 import { type FormEvent, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Container, InstagramIcon, PageBand, usePageTitle } from "../components/ui";
+import { Container, InstagramIcon, PageBand, PinkBand, usePageTitle } from "../components/ui";
 import { artist, works } from "../content";
 
 /** Messages are delivered straight to Ron's Gmail through FormSubmit (no account or API key needed). */
@@ -156,6 +156,10 @@ export default function Contact() {
           </div>
         </Container>
       </main>
+
+      <PinkBand image="/cta-garden.jpg">
+        <div aria-hidden="true" className="h-16 sm:h-28" />
+      </PinkBand>
     </>
   );
 }
