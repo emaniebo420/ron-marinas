@@ -32,12 +32,13 @@ export default function Piece() {
     [
       ["Medium", work.medium],
       ["Size", work.size],
+      ["Year", work.year],
     ] as [string, string | undefined][]
   ).filter((d): d is [string, string] => Boolean(d[1]));
 
   return (
     <>
-      <PageBand title={work.title} kicker={work.year ?? artist.tagline} image="/cta-garden.jpg" />
+      <PageBand title={work.title} kicker={artist.tagline} image="/cta-garden.jpg" />
       <main>
         <Container className="pb-20 pt-6 sm:pb-28">
           <Link to="/gallery" className="mb-6 inline-block py-2 text-xs uppercase tracking-[.2em] text-muted no-underline">
