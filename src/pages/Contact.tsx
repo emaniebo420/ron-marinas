@@ -3,8 +3,11 @@ import { useSearchParams } from "react-router-dom";
 import { Container, InstagramIcon, PageBand, PinkBand, usePageTitle } from "../components/ui";
 import { artist, works } from "../content";
 
-/** Messages are delivered straight to Ron's Gmail through FormSubmit (no account or API key needed). */
-const FORM_ENDPOINT = `https://formsubmit.co/ajax/${artist.email}`;
+/** Messages are sent through EmailJS; the template's "To" address is Ron's Gmail. IDs come from Vite env vars. */
+const EMAILJS_URL = "https://api.emailjs.com/api/v1.0/email/send";
+const EMAILJS_SERVICE = import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined;
+const EMAILJS_TEMPLATE = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
+const EMAILJS_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
 
 const SUBJECTS = ["Artwork Inquiry", "Purchase Inquiry", "Commission Request", "Collaboration", "General Question"] as const;
 
@@ -38,22 +41,25 @@ export default function Contact() {
     const controller = new AbortController();
     const timer = window.setTimeout(() => controller.abort(), 15000);
     try {
-      const res = await fetch(FORM_ENDPOINT, {
+      if (!EMAILJS_SERVICE || !EMAILJS_TEMPLATE || !EMAILJS_KEY) throw new Error("EmailJS is not configured");
+      const res = await fetch(EMAILJS_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
         signal: controller.signal,
         body: JSON.stringify({
-          name,
-          email,
-          _replyto: email,
-          _subject: `Website inquiry: ${subject}`,
-          _template: "table",
-          _captcha: "false",
-          message: body,
+          service_id: EMAILJS_SERVICE,
+          template_id: EMAILJS_TEMPLATE,
+          user_id: EMAILJS_KEY,
+          template_params: {
+            from_name: name,
+            from_email: email,
+            reply_to: email,
+            subject: `Website inquiry: ${subject}`,
+            message: body,
+          },
         }),
       });
-      const result = (await res.json().catch(() => null)) as { success?: string | boolean } | null;
-      if (!res.ok || String(result?.success) === "false") throw new Error(`FormSubmit ${res.status}`);
+      if (!res.ok) throw new Error(`EmailJS ${res.status}`);
       setStatus("success");
       form.reset();
     } catch {
